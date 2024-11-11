@@ -78,7 +78,7 @@
         "flake-compat": "flake-compat",
         "gitignore": "gitignore",
         "nixpkgs": [
-          "nvimFlake",
+          "nvim-flake",
           "gen-luarc",
           "nixpkgs"
         ],
@@ -101,7 +101,7 @@
     "gitignore": {
       "inputs": {
         "nixpkgs": [
-          "nvimFlake",
+          "nvim-flake",
           "gen-luarc",
           "git-hooks",
           "nixpkgs"
@@ -213,18 +213,18 @@
         "type": "github"
       }
     },
-    "nvimFlake": {
+    "nvim-flake": {
       "inputs": {
         "flake-utils": "flake-utils",
         "gen-luarc": "gen-luarc",
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1731355030,
-        "narHash": "sha256-j23NP8WoSLK450avLxQX+nFJoDThJ5xa4/i984+p2pI=",
+        "lastModified": 1731360526,
+        "narHash": "sha256-ESI95ey0f6mQB4qbeGFlmWEgssm0QeTVvzQKnvXrMgg=",
         "owner": "Xinoi",
         "repo": "NeoVim-Flake",
-        "rev": "1df7d411709076e07156db51ad10ae54ef49764a",
+        "rev": "a4d563c6848d024bbcb967d08bd1f5306ba27c4f",
         "type": "github"
       },
       "original": {
@@ -237,7 +237,7 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "nvimFlake": "nvimFlake"
+        "nvim-flake": "nvim-flake"
       }
     },
     "systems": {
