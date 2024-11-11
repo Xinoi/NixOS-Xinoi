@@ -166,11 +166,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 	vim
+	neovim
 	wget
 	unzip
 	unrar
-  networkmanager	
-  spotify
+  	networkmanager	
+  	spotify
 	syncthing
 	betterlockscreen
 	discord
@@ -230,8 +231,6 @@
 	lunar-client
 	man
 	most
-    # flakes 
-    inputs.nvimFlake
   ];
 
   nixpkgs.config = {

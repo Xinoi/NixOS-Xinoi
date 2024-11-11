@@ -14,9 +14,6 @@
 			    ./configuration.nix
 		    ];
 	    };
-        nixpkgs.overlays = [
-            nvimFlake.overlays.default
-        ];
-    };
+	};
 }
 
