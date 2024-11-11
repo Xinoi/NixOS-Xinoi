@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -34,7 +34,6 @@
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm = {
     enable = true;
-    theme = "catppuccin-mocha";
   };
 
   programs.dconf.enable = true;
@@ -167,12 +166,12 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
 	vim
+	neovim
 	wget
 	unzip
 	unrar
-	neovim
-	networkmanager	
-   	spotify
+    networkmanager	
+    spotify
 	syncthing
 	betterlockscreen
 	discord
@@ -210,7 +209,6 @@
 	unison
 	ghc
 	cabal-install
-	haskell-language-server
 	pkgs.nerdfonts
 	lxappearance
 	xclip
@@ -221,24 +219,20 @@
 	p7zip
 	ncdu
 	gparted
-	catppuccin-sddm
 	mesa
 	gamemode
 	gnumake
 	killall
-	ani-cli
 	ripgrep-all
 	fzf
-	xlsx2csv
-	libreoffice-still
 	heroic
 	pandoc
 	ffmpeg
 	lunar-client
-	clang-tools
-	clang
 	man
 	most
+    # flakes 
+    inputs.nvimFlake
   ];
 
   nixpkgs.config = {
