@@ -51,8 +51,9 @@
     ll = "ls -l";
     oo = "cd /home/xinoi/nxcwy-movwy/Obsidian/Life";
     h = "cd /home/xinoi";
-    flake-update = "sudo flake update --commit-lock-file && nixos-rebuild switch --flake ~/NixOS-Xinoi/";
-    config = "nvim /home/xinoi/NixOS-Xinoi/configuration.nix";
+    flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .)";
+    flake-config = "nvim ~/NixOS-Xinoi/flake.nix";
+    config = "nvim ~/NixOS-Xinoi/configuration.nix";
     e = "exit";
     pwo = "poweroff";
     lg = "lazygit";
