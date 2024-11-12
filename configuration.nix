@@ -51,11 +51,11 @@
     ll = "ls -l";
     oo = "cd /home/xinoi/nxcwy-movwy/Obsidian/Life";
     h = "cd /home/xinoi";
-    update = "sudo nixos-rebuild switch";
-    config = "sudo nvim /etc/nixos/configuration.nix";
+    flake-update = "sudo flake update --commit-lock-file && nixos-rebuild switch --flake ~/NixOS-Xinoi/";
+    config = "nvim /home/xinoi/NixOS-Xinoi/configuration.nix";
     e = "exit";
     pwo = "poweroff";
-    ns = "nix-shell --command zsh";
+    lg = "lazygit";
     };
 
   ohMyZsh = {

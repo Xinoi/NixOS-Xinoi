@@ -220,11 +220,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1731360526,
-        "narHash": "sha256-ESI95ey0f6mQB4qbeGFlmWEgssm0QeTVvzQKnvXrMgg=",
+        "lastModified": 1731442975,
+        "narHash": "sha256-K7FWECLsohJjEJ8kEXrkqlDsDwu7IfdJhpeCNmQnU5w=",
         "owner": "Xinoi",
         "repo": "NeoVim-Flake",
-        "rev": "a4d563c6848d024bbcb967d08bd1f5306ba27c4f",
+        "rev": "eaf71a5e051a8e34ba848d32c7539ab441968a3c",
         "type": "github"
       },
       "original": {
