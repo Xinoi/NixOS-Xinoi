@@ -208,7 +208,7 @@
 	unison
 	ghc
 	cabal-install
-	pkgs.nerdfonts
+  iosevka
 	lxappearance
 	xclip
 	gcc
