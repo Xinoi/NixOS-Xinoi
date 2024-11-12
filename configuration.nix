@@ -196,7 +196,6 @@
 	pavucontrol
 	polybar
 	rofi
-	pyright
 	ranger
 	ripgrep
 	rsync
