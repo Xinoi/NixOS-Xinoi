@@ -12,7 +12,7 @@ outputs = {self, nixpkgs, nvim-flake, ...}@inputs: {
 	    specialArgs = { inherit inputs; };
 	    modules = [
 		    ./configuration.nix
-
+        ./fonts.nix
 	    ];
     };
 

@@ -181,6 +181,7 @@
 	zsh
 	oh-my-zsh
 	git
+  gh
 	jdk21
 	lazygit
 	htop
@@ -208,7 +209,6 @@
 	unison
 	ghc
 	cabal-install
-  iosevka
 	lxappearance
 	xclip
 	gcc
