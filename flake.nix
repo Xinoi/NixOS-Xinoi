@@ -4,30 +4,40 @@ description = "A simple NixOS flake";
 inputs = {
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   nvim-flake.url = "github:Xinoi/NeoVim-Flake/main";
-  fenix.url = "github:nix-community/fenix";
+  fenix = {
+    url = "github:nix-community/fenix";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
 };
 
-outputs = {self, ...}@inputs: let
-  pkgs = self.inputs.nixpkgs {system = "x86_64-linux";};
-  neovim = self.inputs.nvim-flake;
-  rust = self.inputs.fenix.packages.default.default;
-in
-{
-    nixosConfigurations.nixos-xinoi = pkgs.lib.nixosSystem {
+outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
+    nixosConfigurations.nixos-xinoi = nixpkgs.lib.nixosSystem {
 	    system = "x86_64-linux";
 	    specialArgs = { inherit inputs; };
-	    modules = [ 
-          {
-            nixpkgs.overlays = [neovim.overlays.default];
-            environment.systemPackages = [
-              rust
-            ];
-          }
+	    modules = [
+        ({ pkgs, ... }: {
+          nixpkgs.overlays = [ 
+            nvim-flake.overlays.default
+            fenix.overlays.default
+          ];
+          
+          environment.systemPackages = [
+            (fenix.packages.x86_64-linux.default.withComponents [
+              "cargo"
+              "clippy"
+              "rust-std"
+              "rustc"
+              "rustfmt"
+            ])
+          ];
+        })
 
 		    ./configuration.nix
         ./fonts.nix
 	    ];
     };
+
+
 };
 }
 
