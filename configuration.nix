@@ -182,6 +182,7 @@
 	zsh
 	oh-my-zsh
 	git
+  git-credential-manager
   gh
 	jdk21
 	lazygit
