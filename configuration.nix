@@ -213,6 +213,10 @@
 	lxappearance
 	xclip
 	gcc
+  libreoffice
+  hunspell
+  hunspellDicts.de_DE
+  hunspellDicts.en_US
 	gdb
 	marksman
 	flameshot
@@ -254,8 +258,8 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8384 22000 25565 22];
-  networking.firewall.allowedUDPPorts = [ 22000 21027 ];
+  networking.firewall.allowedTCPPorts = [ 8384 22000 25565 22 12345 1357];
+  networking.firewall.allowedUDPPorts = [ 22000 21027 1357 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 

@@ -8,6 +8,9 @@ inputs = {
     url = "github:nix-community/fenix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+  prismlauncher = {
+    url = "github:PrismLauncher/PrismLauncher";
+  };
 };
 
 outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
@@ -22,6 +25,7 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
           ];
           
           environment.systemPackages = [
+
             (fenix.packages.x86_64-linux.default.withComponents [
               "cargo"
               "clippy"
@@ -29,6 +33,9 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
               "rustc"
               "rustfmt"
             ])
+
+            self.inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
+            pkgs.openvpn
           ];
         })
 
