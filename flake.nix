@@ -8,6 +8,7 @@ inputs = {
     url = "github:nix-community/fenix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
+  zen-browser.url = "github:MarceColl/zen-browser-flake";
   prismlauncher = {
     url = "github:PrismLauncher/PrismLauncher";
   };
@@ -35,7 +36,7 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
             ])
 
             self.inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
-            pkgs.openvpn
+            self.inputs.zen-browser.packages.${pkgs.system}.specific
           ];
         })
 

@@ -186,7 +186,6 @@
   gh
 	jdk21
 	lazygit
-	htop
 	i3
 	kitty
 	lutris
@@ -258,10 +257,11 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
+  networking.firewall.checkReversePath = false;
   networking.firewall.allowedTCPPorts = [ 8384 22000 25565 22 12345 1357];
   networking.firewall.allowedUDPPorts = [ 22000 21027 1357 ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  #networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

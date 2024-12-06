@@ -1,7 +1,8 @@
 { pkgs, ... }: {
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Iosevka" "JetBrainsMono" ]; })
+      nerd-fonts.iosevka
+      nerd-fonts.jetbrains-mono
     ];
     fontconfig.defaultFonts = {
       monospace = [ "JetBrainsMono Nerd Font" ];
