@@ -23,11 +23,12 @@ in {
     size = mkOption {
       type = types.int;
       description = "Cursor size";
-      default = 32;
+      default = 24;
     };
   };
 
   config = mkIf cfg.enable {
+    # Create the cursor package
     environment.systemPackages = [
       (pkgs.stdenv.mkDerivation {
         name = cfg.name;
@@ -40,6 +41,7 @@ in {
       })
     ];
 
+    # Set system-wide cursor theme
     environment.etc."X11/icons/default".source = 
       "${(pkgs.stdenv.mkDerivation {
         name = cfg.name;
@@ -51,30 +53,15 @@ in {
         '';
       })}/share/icons/${cfg.name}";
 
+    # X11 cursor settings
     services.xserver.displayManager.sessionCommands = ''
       ${pkgs.xorg.xsetroot}/bin/xsetroot -cursor_name left_ptr
     '';
 
+    # Set cursor variables
     environment.variables = {
       XCURSOR_THEME = cfg.name;
       XCURSOR_SIZE = toString cfg.size;
-    };
-
-    gtk = {
-      enable = true;
-      cursorTheme = {
-        name = cfg.name;
-        package = (pkgs.stdenv.mkDerivation {
-          name = cfg.name;
-          src = builtins.toString cfg.path;
-          
-          installPhase = ''
-            mkdir -p $out/share/icons/${cfg.name}/cursors
-            cp -r cursors/* $out/share/icons/${cfg.name}/cursors/
-          '';
-        });
-        size = cfg.size;
-      };
     };
   };
 }
