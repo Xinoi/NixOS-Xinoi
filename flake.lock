@@ -267,11 +267,11 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1732521221,
-        "narHash": "sha256-2ThgXBUXAE1oFsVATK1ZX9IjPcS4nKFOAjhPNKuiMn0=",
+        "lastModified": 1733392399,
+        "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "4633a7c72337ea8fd23a4f2ba3972865e3ec685d",
+        "rev": "d0797a04b81caeae77bcff10a9dde78bc17f5661",
         "type": "github"
       },
       "original": {
@@ -299,11 +299,11 @@
     },
     "nixpkgs_5": {
       "locked": {
-        "lastModified": 1727348695,
-        "narHash": "sha256-J+PeFKSDV+pHL7ukkfpVzCOO7mBSrrpJ3svwBFABbhI=",
+        "lastModified": 1733392399,
+        "narHash": "sha256-kEsTJTUQfQFIJOcLYFt/RvNxIK653ZkTBIs4DG+cBns=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1925c603f17fc89f4c8f6bf6f631a802ad85d784",
+        "rev": "d0797a04b81caeae77bcff10a9dde78bc17f5661",
         "type": "github"
       },
       "original": {
@@ -320,11 +320,11 @@
         "nixpkgs": "nixpkgs_3"
       },
       "locked": {
-        "lastModified": 1732742044,
-        "narHash": "sha256-618USB2X5S7aU9479bIfuqug7UEUOrz/RflururxufQ=",
+        "lastModified": 1733522169,
+        "narHash": "sha256-qZaONnsbtuDjTqBslZnuygJeGm5QcyZtQepAYdu8hdM=",
         "owner": "Xinoi",
         "repo": "NeoVim-Flake",
-        "rev": "2a0b21f25bb5ffbc6f8ae67e5d1c833b3081ab35",
+        "rev": "9d433c31fc3bc395357cf52235e1f30f9f1fdce8",
         "type": "github"
       },
       "original": {
@@ -401,15 +401,15 @@
         "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1727721329,
-        "narHash": "sha256-QYlWZwUSwrM7BuO+dXclZIwoPvBIuJr6GpFKv9XKFPI=",
-        "owner": "MarceColl",
+        "lastModified": 1733523954,
+        "narHash": "sha256-A4ggXb2XkBzDeWn9xrhugQ06wCKrHbJcBea4Oq/9ZyQ=",
+        "owner": "Xinoi",
         "repo": "zen-browser-flake",
-        "rev": "e6ab73f405e9a2896cce5956c549a9cc359e5fcc",
+        "rev": "a7983d7930a38c26218445eb771dbad8b304912a",
         "type": "github"
       },
       "original": {
-        "owner": "MarceColl",
+        "owner": "Xinoi",
         "repo": "zen-browser-flake",
         "type": "github"
       }

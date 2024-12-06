@@ -8,7 +8,7 @@ inputs = {
     url = "github:nix-community/fenix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
-  zen-browser.url = "github:MarceColl/zen-browser-flake";
+  zen-browser.url = "github:Xinoi/zen-browser-flake";
   prismlauncher = {
     url = "github:PrismLauncher/PrismLauncher";
   };
@@ -42,6 +42,7 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
 
 		    ./configuration.nix
         ./fonts.nix
+        ./cursor.nix
 	    ];
     };
 
