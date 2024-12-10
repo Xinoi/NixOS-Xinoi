@@ -234,6 +234,7 @@
 	lunar-client
 	man
 	most
+  prismlauncher
 	inputs.nvim-flake.packages.x86_64-linux.nvim
   ];
 

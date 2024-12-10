@@ -9,9 +9,6 @@ inputs = {
     inputs.nixpkgs.follows = "nixpkgs";
   };
   zen-browser.url = "github:Xinoi/zen-browser-flake";
-  prismlauncher = {
-    url = "github:PrismLauncher/PrismLauncher";
-  };
 };
 
 outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
@@ -35,7 +32,6 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
               "rustfmt"
             ])
 
-            self.inputs.prismlauncher.packages.${pkgs.system}.prismlauncher
             self.inputs.zen-browser.packages.${pkgs.system}.specific
           ];
         })
