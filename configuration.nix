@@ -17,6 +17,12 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -105,6 +111,11 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  
+  # razer
+  hardware.openrazer = {
+    enable = true;
+  };
 
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
@@ -124,12 +135,14 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+  # drawing tablet support
+  hardware.opentabletdriver.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.xinoi = {
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" "wheel" "gamemode" "virtualboxUsers" ];
+    extraGroups = [ "networkmanager" "wheel" "gamemode" "virtualboxUsers" "openrazer" ];
   };
 
   # cleaning
@@ -189,6 +202,8 @@
 	i3
 	kitty
 	lutris
+  wineWowPackages.unstable
+  winetricks
 	mpv
 	neofetch
 	xorg.xev
@@ -216,8 +231,10 @@
   hunspell
   hunspellDicts.de_DE
   hunspellDicts.en_US
+  pywal
 	gdb
 	marksman
+  amdvlk
 	flameshot
 	p7zip
 	ncdu
@@ -231,10 +248,11 @@
 	heroic
 	pandoc
 	ffmpeg
-	lunar-client
 	man
 	most
   prismlauncher
+  openrazer-daemon
+  xf86_input_wacom
 	inputs.nvim-flake.packages.x86_64-linux.nvim
   ];
 
