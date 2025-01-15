@@ -10,6 +10,17 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 16777216;
+    "fs.file-max" = 524288;
+  };
+
+  # Swap 
+ swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 16*1024;
+  } ];
+
   networking.hostName = "nixos-xinoi"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -100,6 +111,12 @@
   #i3
   services.xserver.windowManager.i3.enable = true;
 
+  #hyprland
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
   # Configure keymap in X11
   services.xserver = {
     xkb.layout = "de";
@@ -176,6 +193,11 @@
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  nix.settings = {
+    substituters = ["https://hyprland.cachix.org" "https://nix-gaming.cachix.org" ];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4=" ];
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -187,10 +209,12 @@
   spotify
 	syncthing
 	betterlockscreen
-	discord
+  (discord.override {
+    withOpenASAR = true;
+    withVencord = true;
+  })
 	anki
 	feh
-	dunst
 	dosfstools
 	zsh
 	oh-my-zsh
@@ -231,7 +255,8 @@
   hunspell
   hunspellDicts.de_DE
   hunspellDicts.en_US
-  pywal
+  pywal16
+  colorz
 	gdb
 	marksman
   amdvlk
@@ -253,6 +278,21 @@
   prismlauncher
   openrazer-daemon
   xf86_input_wacom
+  #hyprland
+  wl-clipboard
+  hyprpaper
+  waybar
+  hyprlock
+  eww
+  wofi
+  pywal
+  hyprpicker
+  swaynotificationcenter
+  libnotify
+  swww
+  pulseaudio
+  pywalfox-native
+  #nvim
 	inputs.nvim-flake.packages.x86_64-linux.nvim
   ];
 
