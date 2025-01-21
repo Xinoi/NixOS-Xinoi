@@ -33,6 +33,10 @@
     enable32Bit = true;
   };
 
+  hardware.graphics.extraPackages = with pkgs; [
+  amdvlk
+];
+
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -52,6 +56,7 @@
   services.displayManager.sddm = {
     enable = true;
   };
+
 
   programs.dconf.enable = true;
   
@@ -260,7 +265,8 @@
 	gdb
 	marksman
   amdvlk
-	flameshot
+  slurp
+  grim 
 	p7zip
 	ncdu
 	gparted

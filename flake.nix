@@ -8,9 +8,6 @@ inputs = {
     url = "github:nix-community/fenix";
     inputs.nixpkgs.follows = "nixpkgs";
   };
-  nix-citizen.url = "github:LovingMelody/nix-citizen";
-  nix-gaming.url = "github:fufexan/nix-gaming";
-  nix-citizen.inputs.nix-gaming.follows = "nix-gaming";
 };
 
 outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
@@ -25,10 +22,6 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
           ];
           
           environment.systemPackages = [
-            
-            inputs.nix-citizen.packages.${pkgs.system}.lug-helper 
-            inputs.nix-citizen.packages.${pkgs.system}.star-citizen
-
             (fenix.packages.x86_64-linux.default.withComponents [
               "cargo"
               "clippy"
@@ -42,6 +35,7 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
 		    ./configuration.nix
         ./fonts.nix
         ./cursor.nix
+        ./sddm-theme.nix
 	    ];
     };
 
