@@ -257,6 +257,7 @@
 	xclip
 	gcc
   libreoffice
+  texlive.combined.scheme-full
   hunspell
   hunspellDicts.de_DE
   hunspellDicts.en_US
