@@ -19,9 +19,10 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
           nixpkgs.overlays = [ 
             nvim-flake.overlays.default
             fenix.overlays.default
-          ];
-          
+          ]; 
+
           environment.systemPackages = [
+            
             (fenix.packages.x86_64-linux.default.withComponents [
               "cargo"
               "clippy"
@@ -35,6 +36,7 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
 		    ./configuration.nix
         ./fonts.nix
         ./cursor.nix
+        ./sddm.nix
 	    ];
     };
 
