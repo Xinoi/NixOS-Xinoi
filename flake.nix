@@ -36,7 +36,7 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
 		    ./configuration.nix
         ./fonts.nix
         ./cursor.nix
-        ./sddm.nix
+        ./tt-rss.nix
 	    ];
     };
 

@@ -57,7 +57,6 @@
     enable = true;
   };
 
-
   programs.dconf.enable = true;
   
   # default shell
