@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./hyprland.nix
     ];
 
   # Bootloader.
@@ -216,7 +217,8 @@
 	wget
 	unzip
 	unrar
-  networkmanager	
+  networkmanager
+  btop
   spotify
 	syncthing
 	betterlockscreen
@@ -291,20 +293,7 @@
 	most
   openrazer-daemon
   xf86_input_wacom
-  #hyprland
-  wl-clipboard
-  hyprpaper
-  waybar
-  hyprlock
-  eww
-  wofi
-  pywal
-  hyprpicker
-  swaynotificationcenter
-  libnotify
-  swww
-  pulseaudio
-  pywalfox-native
+  
   #nvim
 	inputs.nvim-flake.packages.x86_64-linux.nvim
   ];
@@ -330,7 +319,7 @@
 
   # Open ports in the firewall.
   networking.firewall.checkReversePath = false;
-  networking.firewall.allowedTCPPorts = [ 8384 22000 25565 22 12345 1357];
+  networking.firewall.allowedTCPPorts = [ 8080 5432 8384 22000 25565 22 12345 1357];
   networking.firewall.allowedUDPPorts = [ 22000 21027 1357 ];
   # Or disable the firewall altogether.
   #networking.firewall.enable = false;
