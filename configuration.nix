@@ -4,7 +4,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./hyprland.nix
+      ./modules/hyprland.nix
+      ./modules/overlays.nix
     ];
 
   # Bootloader.
@@ -36,11 +37,41 @@
 
   hardware.graphics.extraPackages = with pkgs; [
   amdvlk
-];
+  ];
 
+  # Gamepad support 
+  hardware.gaming.enable = true;
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking = {
+    networkmanager.enable = true;
+    nameservers = [ 
+      "127.0.0.1" 
+    ]; # Use DoH     
+    networkmanager.dns = "none";
+    resolvconf.enable = false;
+  };
+ 
+  services.resolved.enable = false;
+
+  # DNS over Https
+  services.dnscrypt-proxy2 = {
+    enable = true;
+    settings = {
+      server_names = [ "cloudflare" ];
+      listen_addresses = [ "127.0.0.1:53" ];
+      ipv4_servers = true;
+      ipv6_servers = false;
+      require_nolog = true;
+      require_nofilter = true;
+      require_dnssec = true;
+
+      cache = true;
+      cache_size = 4096;
+      cache_min_ttl = 2400;
+      cache_max_ttl = 86400;
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -246,6 +277,7 @@
 	xorg.xev
 	obsidian
   prismlauncher
+  lumafly
 	picom
 	pavucontrol
 	polybar
@@ -289,7 +321,9 @@
 	heroic
 	pandoc
 	ffmpeg
-	man
+  linux-manual
+  man-pages
+  man-pages-posix
 	most
   openrazer-daemon
   xf86_input_wacom
@@ -302,7 +336,14 @@
     allowUnfree = true;
   };
 
-  documentation.man.enable = true;
+  documentation = {
+    enable = true;
+    dev.enable = true;
+    man = {
+      enable = true;
+      man-db.enable = true;
+    };
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

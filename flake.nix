@@ -34,9 +34,9 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
         })
 
 		    ./configuration.nix
-        ./fonts.nix
-        ./cursor.nix
-        ./tt-rss.nix
+        ./modules/fonts.nix
+        ./modules/cursor.nix
+        ./modules/tt-rss.nix
 	    ];
     };
 
