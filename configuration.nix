@@ -5,7 +5,6 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./modules/hyprland.nix
-      ./modules/overlays.nix
     ];
 
   # Bootloader.
@@ -38,9 +37,6 @@
   hardware.graphics.extraPackages = with pkgs; [
   amdvlk
   ];
-
-  # Gamepad support 
-  hardware.gaming.enable = true;
 
   # Enable networking
   networking = {
