@@ -34,10 +34,6 @@
     enable32Bit = true;
   };
 
-  hardware.graphics.extraPackages = with pkgs; [
-  amdvlk
-  ];
-
   # Enable networking
   networking = {
     networkmanager.enable = true;
@@ -78,7 +74,6 @@
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm = {
@@ -302,13 +297,11 @@
   colorz
 	gdb
 	marksman
-  amdvlk
   slurp
   grim 
 	p7zip
 	ncdu
 	gparted
-	mesa
 	gamemode
 	gnumake
 	killall
