@@ -8,11 +8,11 @@
     ];
 
   # Bootloader.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.initrd.kernelModules = [ "amdgpu" ];
+  boot.kernelPackages = pkgs.linuxPackages_testing;
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.kernelModules = [ "amdgpu" ];
 
   hardware.enableRedistributableFirmware = true; 
   hardware.firmware = [ pkgs.linux-firmware ];
@@ -23,15 +23,12 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
+    
   hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-    extraPackages = with pkgs; [
-      amdvlk
-      mesa
-    ];
+    enable = true; 
   };
+
+  chaotic.mesa-git.enable = true;
 
   # Enable networking
   networking = {
@@ -76,7 +73,7 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable the KDE Plasma Desktop Environment.
-  services.greetd = {
+  services.displayManager.sddm = {
     enable = true; 
   };
 

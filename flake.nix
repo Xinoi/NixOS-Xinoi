@@ -3,6 +3,7 @@ description = "A simple NixOS flake";
 
 inputs = {
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+  chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   nvim-flake.url = "github:Xinoi/NeoVim-Flake/main";
   fenix = {
     url = "github:nix-community/fenix";
@@ -10,7 +11,7 @@ inputs = {
   };
 };
 
-outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
+outputs = {self, nixpkgs, nvim-flake, fenix, chaotic, ...}@inputs: {
     nixosConfigurations.nixos-xinoi = nixpkgs.lib.nixosSystem {
 	    system = "x86_64-linux";
 	    specialArgs = { inherit inputs; };
@@ -32,6 +33,8 @@ outputs = {self, nixpkgs, nvim-flake, fenix, ...}@inputs: {
             ])
           ];
         })
+
+        chaotic.nixosModules.default
 
 		    ./configuration.nix
         ./modules/fonts.nix
