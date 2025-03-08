@@ -10,6 +10,7 @@
   # Bootloader.
   boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.initrd.kernelModules = [ "amdgpu" ];
+
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
@@ -28,6 +29,7 @@
     enable32Bit = true;
     extraPackages = with pkgs; [
       amdvlk
+      mesa
     ];
   };
 
