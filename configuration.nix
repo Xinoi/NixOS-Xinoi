@@ -8,19 +8,13 @@
     ];
 
   # Bootloader.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.initrd.kernelModules = [ "amdgpu" ];
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.kernel.sysctl = {
-    "vm.max_map_count" = 16777216;
-    "fs.file-max" = 524288;
-  };
-
-  # Swap 
- swapDevices = [ {
-    device = "/var/lib/swapfile";
-    size = 16*1024;
-  } ];
+  hardware.enableRedistributableFirmware = true; 
+  hardware.firmware = [ pkgs.linux-firmware ];
 
   networking.hostName = "nixos-xinoi"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -32,6 +26,9 @@
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      amdvlk
+    ];
   };
 
   # Enable networking
@@ -74,10 +71,11 @@
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm = {
-    enable = true;
+  services.greetd = {
+    enable = true; 
   };
 
   programs.dconf.enable = true;
@@ -156,11 +154,6 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
   
-  # razer
-  hardware.openrazer = {
-    enable = true;
-  };
-
   # Enable sound with pipewire.
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -316,6 +309,7 @@
 	most
   openrazer-daemon
   xf86_input_wacom
+  sddm-astronaut
   
   #nvim
 	inputs.nvim-flake.packages.x86_64-linux.nvim
