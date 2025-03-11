@@ -7,6 +7,7 @@
       ./modules/hyprland.nix
       ./modules/drivers.nix
       ./modules/virtualisation.nix
+      ./modules/fonts.nix 
     ];
 
   # Bootloader.
