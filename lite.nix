@@ -35,6 +35,7 @@
   services.displayManager.defaultSession = "xfce";
 
   users.users.xinoi = {
+    initialHashedPassword = "$y$j9T$MeC1orXD3qAZmZrFsTun4.$syuDij38XP3ESQy9OD4oGtD6xp5zPDgAwIWADvpX6V5";
     isNormalUser = true;
     description = "Xinoi";
     extraGroups = [ "networkmanager" "wheel" ];
