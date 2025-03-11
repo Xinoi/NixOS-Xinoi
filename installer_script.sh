@@ -68,9 +68,9 @@ function install {
   
   echo "Now installing NixOS!"
   
-  if [ "$PROFILE" == "1" ]; then 
+  if [ "$PROFILE" -eq "1" ]; then 
       nixos-install --flake .#${profiles[$PROFILE - 1]} --option 'extra-substituters' 'https://chaotic-nyx.cachix.org/' --option extra-trusted-public-keys "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12 WfF+Gqk6SonIT8=" | tee install.log
-  elif ["$PROFILE" == "2"]; then 
+  elif [ "$PROFILE" -eq "2" ]; then 
     nixos-install --flake .#${profiles[$PROFILE - 1]}
   else
     echo "no configuration, aborting"
