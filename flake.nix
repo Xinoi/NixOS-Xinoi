@@ -37,9 +37,6 @@ outputs = {self, nixpkgs, nvim-flake, fenix, chaotic, ...}@inputs: {
         chaotic.nixosModules.default
 
 		    ./configuration.nix
-        ./modules/fonts.nix
-        ./modules/cursor.nix
-        ./modules/tt-rss.nix
 	    ];
     };
 
