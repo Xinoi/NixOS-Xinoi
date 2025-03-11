@@ -56,6 +56,10 @@
     };
   };
 
+  nixpkgs.config = {
+    allowUnfree = true;
+  };
+
   programs.zsh.shellAliases = {
     flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#lite)";
   };
@@ -77,7 +81,6 @@
     vim 
     wget 
     unzip 
-    unrar 
     btop 
     spotify 
     git 
@@ -95,5 +98,7 @@
     p7zip 
     inputs.nvim-flake.packages.x86_64-linux.nvim
   ]; 
+
+  system.stateVersion = "24.05";
 
 }
