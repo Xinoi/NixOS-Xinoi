@@ -5,6 +5,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./modules/hyprland.nix
+      ./modules/drivers.nix
     ];
 
   # Bootloader.
@@ -14,7 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  networking.hostName = "nixos-xinoi"; # Define your hostname.
+  networking.hostName = "amd_full"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
