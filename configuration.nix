@@ -15,7 +15,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  networking.hostName = "amd_full"; # Define your hostname.
+  networking.hostName = "amdfull"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -84,7 +84,7 @@
     ll = "ls -l";
     oo = "cd /home/xinoi/nxcwy-movwy/Obsidian/Life";
     h = "cd /home/xinoi";
-    flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .)";
+    flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#amdfull)";
     flake-config = "nvim ~/NixOS-Xinoi/flake.nix";
     config = "nvim ~/NixOS-Xinoi/configuration.nix";
     e = "exit";
