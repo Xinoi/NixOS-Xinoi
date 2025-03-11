@@ -63,6 +63,7 @@ function partition {
 
 function install {
   echo "generating hardware configuration"
+  rm hardware-configuration.nix
   nixos-generate-config --show-hardware-config > hardware-configuration.nix
   
   echo "Now installing NixOS!"
