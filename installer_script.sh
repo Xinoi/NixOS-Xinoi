@@ -33,7 +33,7 @@ function partition {
 
   #Formating
   echo "formating drive..."
-  mkfs.ex4 -L nixos /dev/"$ROOT_PART"
+  mkfs.ext4 -L nixos /dev/"$ROOT_PART"
   mkswap -L swap /dev/"$SWAP_PART"
   mkfs.fat -F 32 -n boot /dev/"$BOOT_PART"
 
