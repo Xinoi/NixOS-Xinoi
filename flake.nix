@@ -36,7 +36,7 @@ outputs = {self, nixpkgs, nvim-flake, fenix, chaotic, ...}@inputs: {
 
         chaotic.nixosModules.default
 
-		    ./configuration.nix
+		    ./amdfull.nix
 	    ];
     };
 
