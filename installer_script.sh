@@ -14,7 +14,7 @@ function partition {
   read -p "are you sure? (y/n): " CONFIRM_PART
   if [[ "$CONFIRM_PART" != "y" && "$CONFIRM_PART" != "Y" ]]; then 
     echo "aborting"
-    exit   
+    exit  
   fi 
 
   #Partitioning
@@ -33,7 +33,7 @@ function partition {
   
   if [ -z "$ROOT_PART" ] || [ -z "$SWAP_PART" ] || [ -z "$BOOT_PART" ]; then 
     echo "Error: no Partitions found. Aborting!"
-    exit
+    exit 1
   fi
   echo "$ROOT_PART $SWAP_PART $BOOT_PART"
 
@@ -66,6 +66,12 @@ function install {
   echo "Now installing NixOS!"
   nixos-install --flake .#${profiles[$PROFILE - 1]} --option 'extra-substituters' 'https://chaotic-nyx.cachix.org/' --option extra-trusted-public-keys "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12 WfF+Gqk6SonIT8=" | tee install.log
 
+  if [ $? -eq 0 ]; then 
+    echo "NixOS installation successfull."
+  else 
+    echo "NixOS istallation failed! Check log file."
+    exit 1
+
   echo "Enter password for User:"
   nixos-enter --root /mnt -c 'passwd xinoi'
 
@@ -76,7 +82,7 @@ function install {
 echo "Welcome to my NixOs Installer!"
 if [ ! "$EUID" -eq 0 ]; then 
   echo "Please run the script with elevated Privileges!"
-  exit
+  exit 1
 fi
 
 #choose disk
@@ -92,7 +98,7 @@ if [[ $selection -le $((counter-1)) && $selection -ge 1 ]] ; then
   DEVICE=${devices[$selection - 1]}
 else 
   echo "ERROR: no such device!"
-  exit
+  exit 1
 fi
 
 #choose profile
@@ -107,7 +113,7 @@ elif [ "$profile" = "" ]; then
   PROFILE=1 
 else 
   echo "ERROR: no such profile!"
-  exit
+  exit 1
 fi
 
 partition
