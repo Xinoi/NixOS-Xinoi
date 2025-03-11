@@ -6,6 +6,7 @@
       ./hardware-configuration.nix
       ./modules/hyprland.nix
       ./modules/drivers.nix
+      ./modules/virtualisation.nix
     ];
 
   # Bootloader.
