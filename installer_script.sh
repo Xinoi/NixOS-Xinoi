@@ -22,14 +22,16 @@ function partition {
   parted /dev/"$DEVICE" -- mklabel gpt
   
   echo "partitioning drive..."
-  parted /dev/"$DEVICE" -- mkpart root ext4 512MB -8GB
-  parted /dev/"$DEVICE" -- mkpart swap linux-swap -8GB 100%
-  parted /dev/"$DEVICE" -- mkpart ESP fat32 1MB 512MB 
-  parted /dev/"$DEVICE" -- set 3 esp on
+  parted /dev/"$DEVICE" -- mkpart root ext4 512MB -8GB > /dev/null 2>&1
+  parted /dev/"$DEVICE" -- mkpart swap linux-swap -8GB 100% > /dev/null 2>&1
+  parted /dev/"$DEVICE" -- mkpart ESP fat32 1MB 512MB > /dev/null 2>&1
+  parted /dev/"$DEVICE" -- set 3 esp on > /dev/null 2>&1
   
   ROOT_PART=$(lsblk -ln -o NAME /dev/"$DEVICE" | grep -E "${DEVICE}[^[:space:]]+1$")
   SWAP_PART=$(lsblk -ln -o NAME /dev/"$DEVICE" | grep -E "${DEVICE}[^[:space:]]+2$")
   BOOT_PART=$(lsblk -ln -o NAME /dev/"$DEVICE" | grep -E "${DEVICE}[^[:space:]]+3$")
+
+  echo "$ROOT_PART $SWAP_PART $BOOT_PART"
 
   #Formating
   echo "formating drive..."
