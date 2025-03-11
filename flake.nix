@@ -12,34 +12,61 @@ inputs = {
 };
 
 outputs = {self, nixpkgs, nvim-flake, fenix, chaotic, ...}@inputs: {
-    nixosConfigurations.amdfull = nixpkgs.lib.nixosSystem {
-	    system = "x86_64-linux";
-	    specialArgs = { inherit inputs; };
-	    modules = [
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = [ 
-            nvim-flake.overlays.default
-            fenix.overlays.default
-          ]; 
+  nixosConfigurations.amdfull = nixpkgs.lib.nixosSystem {
+	  system = "x86_64-linux";
+	  specialArgs = { inherit inputs; };
+	  modules = [
+      ({ pkgs, ... }: {
+        nixpkgs.overlays = [ 
+          nvim-flake.overlays.default
+          fenix.overlays.default
+        ]; 
 
-          environment.systemPackages = [
-            
-            (fenix.packages.x86_64-linux.default.withComponents [
-              "cargo"
-              "clippy"
-              "rust-std"
-              "rustc"
-              "rustfmt"
-            ])
-          ];
-        })
+        environment.systemPackages = [
+          
+          (fenix.packages.x86_64-linux.default.withComponents [
+            "cargo"
+            "clippy"
+            "rust-std"
+            "rustc"
+            "rustfmt"
+          ])
+        ];
+      })
 
-        chaotic.nixosModules.default
+      chaotic.nixosModules.default
 
-		    ./amdfull.nix
-	    ];
-    };
+      ./amdfull.nix
 
+    ];
+  };
+
+  nixosConfigurations.lite = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
+    modules = [
+      ({ pkgs, ... }: {
+        nixpkgs.overlays = [ 
+          nvim-flake.overlays.default
+          fenix.overlays.default
+        ]; 
+
+        environment.systemPackages = [
+          
+          (fenix.packages.x86_64-linux.default.withComponents [
+            "cargo"
+            "clippy"
+            "rust-std"
+            "rustc"
+            "rustfmt"
+          ])
+        ];
+      })
+
+      ./lite.nix
+
+    ];
+  };
 
 };
 }

@@ -8,7 +8,8 @@
       ./modules/drivers.nix
       ./modules/virtualisation.nix
       ./modules/fonts.nix 
-      ./modules/networking.nix
+      ./modules/networking.nix 
+      ./modules/shell.nix
     ];
 
   # Bootloader.
@@ -60,30 +61,8 @@
 
   programs.dconf.enable = true;
   
-  # default shell
-  users.defaultUserShell = pkgs.zsh;
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-    shellAliases = {
-      ll = "ls -l";
-      oo = "cd /home/xinoi/nxcwy-movwy/Obsidian/Life";
-      h = "cd /home/xinoi";
-      flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#amdfull)";
-      flake-config = "nvim ~/NixOS-Xinoi/flake.nix";
-      config = "nvim ~/NixOS-Xinoi/configuration.nix";
-      e = "exit";
-      pwo = "poweroff";
-      lg = "lazygit";
-      };
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" "cp" ];
-      theme = "darkblood";
-    };
+  programs.zsh.shellAliases = {
+    flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#amdfull)";
   };
 
   #my services
@@ -132,7 +111,7 @@
   users.users.xinoi = {
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" "wheel" "gamemode" "virtualboxUsers" ];
+    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
   };
 
   # cleaning
@@ -179,90 +158,88 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-	vim
-	wget
-	unzip
-	unrar
-  networkmanager
-  btop
-  spotify
-	syncthing
-	betterlockscreen
-  (discord.override {
-    withOpenASAR = true;
-    withVencord = true;
-  })
-	anki
-	feh
-	dosfstools
-	zsh
-	oh-my-zsh
-	git
-  git-credential-manager
-  gh
-	jdk21
-	lazygit
-	i3
-	kitty
-	lutris
-  wineWowPackages.unstable
-  winetricks
-	mpv
-	neofetch
-	xorg.xev
-	obsidian
-  prismlauncher
-  lumafly
-	picom
-	pavucontrol
-	polybar
-	rofi
-	ranger
-	ripgrep
-	rsync
-	steam
-	sway
-	dracula-theme
-	dracula-icon-theme
-	zathura
-	inotify-tools
-	unison
-	ghc
-	cabal-install
-	lxappearance
-	xclip
-	gcc
-  libreoffice
-  texlive.combined.scheme-full
-  hunspell
-  hunspellDicts.de_DE
-  hunspellDicts.en_US
-  pywal16
-  colorz
-	gdb
-	marksman
-  slurp
-  grim 
-	p7zip
-	ncdu
-	gparted
-	gamemode
-	gnumake
-	killall
-	ripgrep-all
-	fzf
-	heroic
-	pandoc
-	ffmpeg
-  linux-manual
-  man-pages
-  man-pages-posix
-	most
-  xf86_input_wacom
-  sddm-astronaut
-  
-  #nvim
-	inputs.nvim-flake.packages.x86_64-linux.nvim
+    vim
+    wget
+    unzip
+    unrar
+    networkmanager
+    btop
+    spotify
+    syncthing
+    betterlockscreen
+    (discord.override {
+      withOpenASAR = true;
+      withVencord = true;
+    })
+    anki
+    feh
+    dosfstools
+    git
+    git-credential-manager
+    gh
+    jdk21
+    lazygit
+    i3
+    kitty
+    lutris
+    wineWowPackages.unstable
+    winetricks
+    mpv
+    neofetch
+    xorg.xev
+    obsidian
+    prismlauncher
+    lumafly
+    picom
+    pavucontrol
+    polybar
+    rofi
+    ranger
+    ripgrep
+    rsync
+    steam
+    sway
+    dracula-theme
+    dracula-icon-theme
+    zathura
+    inotify-tools
+    unison
+    ghc
+    cabal-install
+    lxappearance
+    xclip
+    gcc
+    libreoffice
+    texlive.combined.scheme-full
+    hunspell
+    hunspellDicts.de_DE
+    hunspellDicts.en_US
+    pywal16
+    colorz
+    gdb
+    marksman
+    slurp
+    grim 
+    p7zip
+    ncdu
+    gparted
+    gamemode
+    gnumake
+    killall
+    ripgrep-all
+    fzf
+    heroic
+    pandoc
+    ffmpeg
+    linux-manual
+    man-pages
+    man-pages-posix
+    most
+    xf86_input_wacom
+    sddm-astronaut
+    
+    #nvim
+    inputs.nvim-flake.packages.x86_64-linux.nvim
   ];
 
   nixpkgs.config = {
