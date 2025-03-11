@@ -63,10 +63,16 @@ function partition {
 
 function install {
   echo "generating hardware configuration"
-  nixos-generate-config --show-hardware-config > hardware-config.nix
+  nixos-generate-config --show-hardware-config > hardware-configuration.nix
   
   echo "Now installing NixOS!"
-  nixos-install --flake .#${profiles[$PROFILE - 1]} --option 'extra-substituters' 'https://chaotic-nyx.cachix.org/' --option extra-trusted-public-keys "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12 WfF+Gqk6SonIT8=" | tee install.log
+  
+  if [ "$PROFILE" == "1" ]; then 
+      nixos-install --flake .#${profiles[$PROFILE - 1]} --option 'extra-substituters' 'https://chaotic-nyx.cachix.org/' --option extra-trusted-public-keys "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12 WfF+Gqk6SonIT8=" | tee install.log
+  else
+    echo "no configuration, aborting"
+    exit 1
+  fi
 
   if [ $? -eq 0 ]; then 
     echo "NixOS installation successfull."

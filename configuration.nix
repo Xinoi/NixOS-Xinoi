@@ -147,7 +147,7 @@
   users.users.xinoi = {
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" "wheel" "gamemode" "virtualboxUsers" "openrazer" ];
+    extraGroups = [ "networkmanager" "wheel" "gamemode" "virtualboxUsers" ];
   };
 
   # cleaning
@@ -273,7 +273,6 @@
   man-pages
   man-pages-posix
 	most
-  openrazer-daemon
   xf86_input_wacom
   sddm-astronaut
   
