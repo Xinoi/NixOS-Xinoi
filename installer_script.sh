@@ -71,6 +71,7 @@ function install {
   else 
     echo "NixOS istallation failed! Check log file."
     exit 1
+  fi
 
   echo "Enter password for User:"
   nixos-enter --root /mnt -c 'passwd xinoi'
@@ -94,7 +95,7 @@ while read -r name size; do
   ((counter++))
 done < <(lsblk -dn -o NAME,SIZE)
 read -p "device: " selection
-if [[ $selection -le $((counter-1)) && $selection -ge 1 ]] ; then 
+if [[ $selection -le $((counter-1)) && $selection -ge 1 ]]; then 
   DEVICE=${devices[$selection - 1]}
 else 
   echo "ERROR: no such device!"
