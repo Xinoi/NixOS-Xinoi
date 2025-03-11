@@ -7,7 +7,7 @@ set -eo pipefail
 DEVICE=0
 PROFILE=1 
 devices=()
-profiles=("amdfull")
+profiles=("amdfull" "lite")
 
 function partition {
   echo "you chose ${profiles[$PROFILE - 1]} with device: $DEVICE"
@@ -70,6 +70,8 @@ function install {
   
   if [ "$PROFILE" == "1" ]; then 
       nixos-install --flake .#${profiles[$PROFILE - 1]} --option 'extra-substituters' 'https://chaotic-nyx.cachix.org/' --option extra-trusted-public-keys "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12 WfF+Gqk6SonIT8=" | tee install.log
+  elif ["$PROFILE" == "2"]; then 
+    nixos-install --flake .#${profiles[$PROFILE - 1]}
   else
     echo "no configuration, aborting"
     exit 1
@@ -83,9 +85,6 @@ function install {
     swapoff -a
     exit 1
   fi
-
-  echo "Enter password for User:"
-  nixos-enter --root /mnt -c 'passwd xinoi'
 
   echo "If everything worked you can now reboot! Good Luck :)" 
 }
@@ -116,13 +115,11 @@ fi
 #choose profile
 echo -e "please choose a profile(default -> amdfull)" 
 for ((i=0; i < ${#profiles[@]}; i++)); do 
-  echo "$(($p + 1)). ${profiles[$p]}"
+  echo "$(($i + 1)). ${profiles[$i]}"
 done
 read -p "profile: " profile
-if [ "$profile" = "1" ]; then 
-  PROFILE=1 
-elif [ "$profile" = "" ]; then 
-  PROFILE=1 
+if [ ! "$profile" -gt "${#profiles[@]}" ]; then 
+  PROFILE="$profile"
 else 
   echo "ERROR: no such profile!"
   exit 1
