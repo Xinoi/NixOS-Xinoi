@@ -12,7 +12,7 @@ inputs = {
 };
 
 outputs = {self, nixpkgs, nvim-flake, fenix, chaotic, ...}@inputs: {
-    nixosConfigurations.amd_full = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.amdfull = nixpkgs.lib.nixosSystem {
 	    system = "x86_64-linux";
 	    specialArgs = { inherit inputs; };
 	    modules = [
