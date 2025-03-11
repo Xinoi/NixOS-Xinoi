@@ -2,6 +2,8 @@
 
 # This will create a UEFI NixOS install with my configuration
 
+set -eo pipefail
+
 DEVICE=0
 PROFILE=1 
 devices=()
@@ -70,6 +72,8 @@ function install {
     echo "NixOS installation successfull."
   else 
     echo "NixOS istallation failed! Check log file."
+    umount -R /mnt 
+    swapoff -a
     exit 1
   fi
 
