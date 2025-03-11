@@ -5,7 +5,7 @@
 DEVICE=0
 PROFILE=1 
 devices=()
-profiles=("amd_full")
+profiles=("amdfull")
 
 function partition {
   echo "you chose ${profiles[$PROFILE - 1]} with device: $DEVICE"
@@ -54,7 +54,16 @@ function partition {
 }
 
 function install {
+  echo "generating hardware configuration"
+  nixos-generate-config --show-hardware-config > hardware-config.nix
+  
+  echo "Now installing NixOS!"
+  nixos-install --flake .#${profiles[$PROFILE - 1]} --option 'extra-substituters' 'https://chaotic-nyx.cachix.org/' --option extra-trusted-public-keys "chaotic-nyx.cachix.org-1:HfnXSw4pj95iI/n17rIDy40agHj12 WfF+Gqk6SonIT8=" | tee install.log
 
+  echo "Enter password for User:"
+  nixos-enter --root /mnt -c 'passwd xinoi'
+
+  echo "If everything worked you can now reboot! Good Luck :)" 
 }
 
 # check if sudo rights
@@ -81,7 +90,7 @@ else
 fi
 
 #choose profile
-echo -e "please choose a profile(default -> amd_full)" 
+echo -e "please choose a profile(default -> amdfull)" 
 for ((i=0; i < ${#profiles[@]}; i++)); do 
   echo "$(($p + 1)). ${profiles[$p]}"
 done
