@@ -14,10 +14,8 @@
     
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-
   networking.hostName = "lite";
   networking.firewall.enable = false;
-
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
