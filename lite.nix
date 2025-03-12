@@ -30,15 +30,13 @@
   
   services.xserver = {
     enable = true;
-    xkb.layout = "de";
-    xkb.variant = "";
-    desktopManager = {
-      xterm.enable = false;
-      xfce.enable = true;
-    };
+    libinput.enable = true; 
+    displayManager.lightdm.enable = true; 
+    desktopManager.cinnamon.enable = true;
+    displayManager.defaultSession = "cinnamon";
   };
+
   console.keyMap = "de";
-  services.displayManager.defaultSession = "xfce";
 
   users.users.xinoi = {
     initialHashedPassword = "$y$j9T$MeC1orXD3qAZmZrFsTun4.$syuDij38XP3ESQy9OD4oGtD6xp5zPDgAwIWADvpX6V5";
