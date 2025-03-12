@@ -15,8 +15,17 @@
   # Bootloader.
   boot.kernelPackages = pkgs.linuxPackages_testing;
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+    };
+    grub = {
+      enable = true;
+      efiSupport = true; 
+      device = "nodev";
+    };
+  }; 
+
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   networking.hostName = "amdfull"; # Define your hostname.
@@ -54,7 +63,6 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
 
-  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm = {
     enable = true; 
   };
