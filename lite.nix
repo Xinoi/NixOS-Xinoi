@@ -27,13 +27,11 @@
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
-  
-  services.xserver = {
-    enable = true;
-    libinput.enable = true; 
-    displayManager.lightdm.enable = true; 
-    desktopManager.cinnamon.enable = true;
-    displayManager.defaultSession = "cinnamon";
+ 
+  services = {
+    xserver.enable = true; 
+    displayManager.sddm.enable = true;
+    desktopManager.plasma6.enable = true;
   };
 
   console.keyMap = "de";
