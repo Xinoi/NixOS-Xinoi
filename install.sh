@@ -64,6 +64,7 @@ function partition {
 function install {
   echo "generating hardware configuration"
   nixos-generate-config --force --root /mnt
+  echo "copy hardware-config.nix from /mnt/etc/nixos"
   mv /mnt/etc/nixos/hardware-configuration.nix ./hardware-configuration.nix
   
   echo "Now installing NixOS!"
