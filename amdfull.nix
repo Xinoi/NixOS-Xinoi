@@ -4,6 +4,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./modules/displayManager.nix
       ./modules/hyprland.nix
       ./modules/drivers.nix
       ./modules/virtualisation.nix
@@ -62,10 +63,6 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
-
-  services.displayManager.sddm = {
-    enable = true; 
-  };
 
   programs.dconf.enable = true;
   
