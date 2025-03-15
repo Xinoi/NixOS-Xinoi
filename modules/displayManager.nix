@@ -2,7 +2,7 @@
 {
   environment.systemPackages = [
       (pkgs.callPackage ./sddm-astronaut-theme.nix {
-          theme = "black_hole";
+          theme = "pixel_sakura_static";
     themeConfig={
         General = {
         HeaderText ="Hi";
@@ -13,15 +13,17 @@
         })
       ];
 
-  services.displayManager.sddm = {
-    enable = true;
-    package = pkgs.kdePackages.sddm;
-    wayland.enable = true;
-    theme = "sddm-astronaut-theme";
-    extraPackages = with pkgs; [
-        kdePackages.qtmultimedia
-        kdePackages.qtsvg
-        kdePackages.qtvirtualkeyboard
-    ];
+  services.displayManager = {
+    defaultSession = "hyprland";
+    sddm = {
+      enable = true;
+      package = pkgs.kdePackages.sddm;
+      theme = "sddm-astronaut-theme";
+      extraPackages = with pkgs; [
+          kdePackages.qtmultimedia
+          kdePackages.qtsvg
+          kdePackages.qtvirtualkeyboard
+      ];
+    };
   };
 }
