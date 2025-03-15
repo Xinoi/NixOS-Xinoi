@@ -1,12 +1,12 @@
 {pkgs, ...}:
 {
   environment.systemPackages = [
-      (pkgs.callPackage ./sddm-astronaut-theme.nix {
+      (pkgs.callPackage ../packages/sddm-astronaut-theme.nix {
           theme = "pixel_sakura_static";
     themeConfig={
         General = {
         HeaderText ="Hi";
-              Background="/home/xinoi/nxcwy-movwy/dotfiles/pixel_sakura_static.png";
+              Background="../assets/pixel_sakura_static.png";
               FontSize="10.0";
             };	
         };
