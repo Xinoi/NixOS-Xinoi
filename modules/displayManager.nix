@@ -1,17 +1,16 @@
 {pkgs, ...}:
 {
   environment.systemPackages = [
-      (pkgs.callPackage ../packages/sddm-astronaut-theme.nix {
-          theme = "pixel_sakura_static";
-    themeConfig={
+    (pkgs.callPackage ../packages/sddm-astronaut-theme.nix {
+      theme = "pixel_sakura";
+      themeConfig={
         General = {
-        HeaderText ="Hi";
-              Background="../assets/pixel_sakura_static.png";
-              FontSize="10.0";
-            };	
-        };
-        })
-      ];
+        HeaderText ="Hi!";
+        FontSize="10.0";
+        };	
+      };
+    })
+  ];
 
   services.displayManager = {
     defaultSession = "hyprland";
