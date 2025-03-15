@@ -242,7 +242,6 @@
     man-pages-posix
     most
     xf86_input_wacom
-    sddm-astronaut
     
     #nvim
     inputs.nvim-flake.packages.x86_64-linux.nvim
