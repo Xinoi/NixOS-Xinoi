@@ -3,7 +3,7 @@ description = "A simple NixOS flake";
 
 inputs = {
   nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-  chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+  #chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
   nvim-flake.url = "github:Xinoi/NeoVim-Flake/main";
   fenix = {
     url = "github:nix-community/fenix";

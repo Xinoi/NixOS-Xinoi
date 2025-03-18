@@ -8,7 +8,7 @@
     enable = true; 
   };
   
-  chaotic.mesa-git.enable = true;
+  #chaotic.mesa-git.enable = true;
 
   services.printing.enable = true;
   
