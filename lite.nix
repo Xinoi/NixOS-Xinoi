@@ -28,10 +28,10 @@
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
  
-  services = {
-    xserver.enable = true; 
-    displayManager.sddm.enable = true;
-    desktopManager.plasma6.enable = true;
+  services.xserver = {
+    enable = true; 
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
   };
 
   console.keyMap = "de";
@@ -80,6 +80,18 @@
   
   programs.firefox.enable = true; 
   
+  environment.gnome.excludePackages = (with pkgs; [
+    atomix # puzzle game
+    cheese # webcam tool
+    epiphany # web browser
+    evince # document viewer
+    gnome-tour
+    hitori # sudoku game
+    iagno # go game
+    tali # poker game
+    totem # video player
+  ]);
+
   environment.systemPackages = with pkgs; [
     vim 
     wget 
