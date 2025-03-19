@@ -183,7 +183,7 @@
     git
     git-credential-manager
     gh
-    jdk21
+    jdk
     lazygit
     i3
     kitty
@@ -194,7 +194,9 @@
     neofetch
     xorg.xev
     obsidian
-    prismlauncher
+    (prismlauncher.override {
+      jdks = [ jdk21_headless ];
+    })
     lumafly
     picom
     pavucontrol
