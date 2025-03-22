@@ -188,9 +188,11 @@
     i3
     kitty
     lutris
-    wineWowPackages.unstable
-    winetricks
     mpv
+    bottles
+    wineWowPackages.unstableFull
+    wineWowPackages.waylandFull
+    winetricks
     neofetch
     xorg.xev
     obsidian

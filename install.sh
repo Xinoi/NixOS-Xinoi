@@ -24,7 +24,7 @@ function partition {
   parted /dev/"$DEVICE" -- mklabel gpt
   
   echo "partitioning drive..."
-  parted /dev/"$DEVICE" -- mkpart root ext4 512MB -8GB > /dev/null 2>&1
+  parted /dev/"$DEVICE" -- mkpart root ext4 1GB -8GB > /dev/null 2>&1
   parted /dev/"$DEVICE" -- mkpart swap linux-swap -8GB 100% > /dev/null 2>&1
   parted /dev/"$DEVICE" -- mkpart ESP fat32 1MB 512MB > /dev/null 2>&1
   parted /dev/"$DEVICE" -- set 3 esp on > /dev/null 2>&1
