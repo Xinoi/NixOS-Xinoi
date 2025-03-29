@@ -133,6 +133,7 @@
   programs.xfconf.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
     thunar-volman
+    thunar-archive-plugin
   ];
   services.gvfs.enable = true; 
   services.tumbler.enable = true;
@@ -164,10 +165,13 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    coreutils
     vim
+    emacs
     wget
     unzip
     unrar
+    kdePackages.ark
     networkmanager
     btop
     spotify
