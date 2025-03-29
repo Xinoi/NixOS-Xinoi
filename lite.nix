@@ -93,6 +93,7 @@
   ]);
 
   environment.systemPackages = with pkgs; [
+    coreutils
     vim 
     wget 
     unzip 
