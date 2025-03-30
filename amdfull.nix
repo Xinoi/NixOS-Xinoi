@@ -11,7 +11,7 @@
       ./modules/fonts.nix 
       ./modules/networking.nix 
       ./modules/shell.nix
-      ./modules/lsp.nix
+      ./modules/emacs.nix
     ];
 
   # Bootloader.
@@ -131,12 +131,6 @@
     options = "--delete-older-than 30d";
   };
   
-  #emacs 
-  services.emacs = {
-    enable = true;
-    package = pkgs.emacs;
-    defaultEditor = true;
-  };
   # thunar 
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
@@ -179,6 +173,9 @@
     emacs
     wget
     unzip
+    fd
+    libtool
+    cmake
     unrar
     kdePackages.ark
     networkmanager
@@ -218,6 +215,8 @@
     polybar
     rofi
     ranger
+    mu
+    isync
     ripgrep
     rsync
     steam
