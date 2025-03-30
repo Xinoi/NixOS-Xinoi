@@ -11,6 +11,7 @@
       ./modules/fonts.nix 
       ./modules/networking.nix 
       ./modules/shell.nix
+      ./modules/lsp.nix
     ];
 
   # Bootloader.
@@ -68,6 +69,8 @@
   
   programs.zsh.shellAliases = {
     flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#amdfull)";
+    em = "emacsclient -c -a 'nvim'";
+    emt = "emacsclient -t";
   };
 
   #my services
@@ -127,7 +130,13 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-
+  
+  #emacs 
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs;
+    defaultEditor = true;
+  };
   # thunar 
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
