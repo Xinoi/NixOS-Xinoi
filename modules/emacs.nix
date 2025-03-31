@@ -12,6 +12,8 @@
     emacs
     isync
     pass
+    maim
+    graphviz
     pyright
     clang-tools
     rust-analyzer
