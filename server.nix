@@ -77,8 +77,8 @@
     ranger
     ripgrep
     gcc
+    kitty
     p7zip
-
   ];
  
   system.stateVersion = "24.05";
