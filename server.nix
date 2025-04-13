@@ -21,6 +21,7 @@
   services.avahi = {
     enable = true;
     openFirewall = true;
+    nssmdns4 = true;
   };
 
   time.timeZone = "Europe/Berlin";

@@ -251,6 +251,7 @@
     gnumake
     killall
     ripgrep-all
+    avahi
     fzf
     heroic
     pandoc
