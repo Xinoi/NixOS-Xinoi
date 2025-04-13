@@ -19,6 +19,12 @@
     rust-analyzer
     lua-language-server
     nil
+    gopls
+    gore
+    gomodifytags
+    gotests
+    html-tidy
+    stylelint
     texlab
     shellcheck
     nixfmt-classic
