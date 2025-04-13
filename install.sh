@@ -7,7 +7,7 @@ set -eo pipefail
 DEVICE=0
 PROFILE=1 
 devices=()
-profiles=("amdfull" "lite")
+profiles=("amdfull" "lite" "server")
 
 function partition {
   echo "you chose ${profiles[$PROFILE - 1]} with device: $DEVICE"
@@ -72,6 +72,8 @@ function install {
   if [ "$PROFILE" -eq "1" ]; then 
       nixos-install --flake .#${profiles[$PROFILE - 1]} tee install.log
   elif [ "$PROFILE" -eq "2" ]; then 
+    nixos-install --flake .#${profiles[$PROFILE - 1]} tee install.log
+  elif [ "$PROFILE" -eq "3" ];then 
     nixos-install --flake .#${profiles[$PROFILE - 1]} tee install.log
   else
     echo "no configuration, aborting"
