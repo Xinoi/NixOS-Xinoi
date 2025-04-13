@@ -66,9 +66,13 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "de_DE.UTF-8";
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    desktopManager.gnome.enable = true;
+    xkb.layout = "de";
+    xkb.variant = "";
+  };
+
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   programs.dconf.enable = true;
@@ -103,19 +107,10 @@
     };
   };
 
-  #i3
-  services.xserver.windowManager.i3.enable = true;
-
   #hyprland
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-  };
-
-  # Configure keymap in X11
-  services.xserver = {
-    xkb.layout = "de";
-    xkb.variant = "";
   };
 
   # Configure console keymap
