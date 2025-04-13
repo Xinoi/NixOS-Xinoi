@@ -27,6 +27,11 @@
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
+  services.avahi = {
+    enable = true;
+    openFirewall = true;
+  };
+
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
 
