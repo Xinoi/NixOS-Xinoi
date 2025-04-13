@@ -7,17 +7,8 @@
     ./modules/shell.nix
   ];
 
-  boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-    };
-    grub = {
-      enable = true;
-      efiSupport = true;
-      device = "nodev";
-    };
-  };
-
+  boot.loader.systemd-boot.enable = true;
+  
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
@@ -80,7 +71,4 @@
     kitty
     p7zip
   ];
- 
-  system.stateVersion = "24.05";
-
 }
