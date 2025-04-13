@@ -70,11 +70,11 @@ function install {
   echo "Now installing NixOS!"
   
   if [ "$PROFILE" -eq "1" ]; then 
-      nixos-install --flake .#${profiles[$PROFILE - 1]} tee install.log
+      nixos-install --flake .#${profiles[$PROFILE - 1]} > install.log
   elif [ "$PROFILE" -eq "2" ]; then 
-    nixos-install --flake .#${profiles[$PROFILE - 1]} tee install.log
+    nixos-install --flake .#${profiles[$PROFILE - 1]} > install.log
   elif [ "$PROFILE" -eq "3" ];then 
-    nixos-install --flake .#${profiles[$PROFILE - 1]} tee install.log
+    nixos-install --flake .#${profiles[$PROFILE - 1]} > install.log
   else
     echo "no configuration, aborting"
     exit 1
