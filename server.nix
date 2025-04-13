@@ -36,7 +36,7 @@
     initialHashedPassword = "$y$j9T$MeC1orXD3qAZmZrFsTun4.$syuDij38XP3ESQy9OD4oGtD6xp5zPDgAwIWADvpX6V5";
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" ];
+    extraGroups = [ "networkmanager" "wheel" ];
   };
 
   nix.optimise.automatic = true;
