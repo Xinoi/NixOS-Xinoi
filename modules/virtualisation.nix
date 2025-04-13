@@ -4,7 +4,12 @@
   virtualisation.libvirtd.enable = true;
   virtualisation.spiceUSBRedirection.enable = true;
 
-  virtualisation.docker.enable = true;
-  users.extraGroups.docker.members = [ "xinoi" ];
-  
+  virtualisation.containers.enable = true;
+  virtualisation = {
+    podmam = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
 }
