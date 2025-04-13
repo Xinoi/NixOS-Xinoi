@@ -231,6 +231,8 @@
     lxappearance
     xclip
     gcc
+    go
+    gotools
     libreoffice
     texlive.combined.scheme-full
     hunspell

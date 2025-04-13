@@ -68,6 +68,19 @@ outputs = {self, nixpkgs, nvim-flake, fenix, chaotic, ...}@inputs: {
     ];
   };
 
+ nixosConfigurations.server = nixpkgs.lib.nixosSystem {
+    system = "x86_64-linux";
+    specialArgs = { inherit inputs; };
+    modules = [
+      ({ pkgs, ... }: {
+        environment.systemPackages = [
+        ];
+      })
+      ./server.nix
+    ];
+  };
+
+
 };
 }
 
