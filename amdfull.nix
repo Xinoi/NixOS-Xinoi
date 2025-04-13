@@ -54,6 +54,12 @@
     };
   };
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
@@ -251,7 +257,6 @@
     gnumake
     killall
     ripgrep-all
-    avahi
     fzf
     heroic
     pandoc
