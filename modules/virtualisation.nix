@@ -1,3 +1,5 @@
+{pkgs, ...}:
+
 { 
   programs.virt-manager.enable = true; 
   users.groups.libvirtd.members = ["xinoi"];
@@ -6,10 +8,15 @@
 
   virtualisation.containers.enable = true;
   virtualisation = {
-    podmam = {
+    podman = {
       enable = true;
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
   };
+
+  environment.systemPackages = [
+    pkgs.podman-desktop
+  ];
+  
 }
