@@ -23,6 +23,7 @@
   networking = {
     hostName = "server";
     firewall.enable = true;
+    firewall.allowedTCPPorts = [ 22 80 443 ];
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
