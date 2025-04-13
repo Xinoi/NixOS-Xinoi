@@ -31,6 +31,8 @@
   services.xserver = {
     enable = true; 
     displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
+    displayManager.defaultSession = "gnome(wayland)";
     desktopManager.gnome.enable = true;
   };
 

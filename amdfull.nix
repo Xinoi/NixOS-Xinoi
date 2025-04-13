@@ -68,17 +68,9 @@
 
   services.xserver = {
     enable = true;
-    desktopManager.gnome.enable = true;
-
     xkb.layout = "de";
     xkb.variant = "";
   };
-
-  environment.gnome.excludePackages = with pkgs; [
-    orca
-    epiphany
-    gnome-software
-  ];
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   programs.dconf.enable = true;
@@ -182,7 +174,6 @@
     unzip
     fd
     libtool
-    xwayland
     cmake
     unrar
     kdePackages.ark
@@ -250,6 +241,7 @@
     gdb
     marksman
     slurp
+    kdePackages.kate
     grim 
     p7zip
     ncdu
