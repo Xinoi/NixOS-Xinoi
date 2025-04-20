@@ -91,7 +91,7 @@
 	overrideFolders = true;
 	settings = {
 		devices = {
-			"MacBook" = { id = "TIFVZN6-HGB3ZEU-RHDTCUT-SRVOIKQ-VOQV3DP-EQ4QYX3-VKYK66X-KZOSKQ2"; };
+			"MacBook" = { id = "64AV3PX-SLFG4BU-YN3CEU7-X3MTUMZ-POMGLR2-A3RC43B-HWNCWQD-2XKICQF "; };
 			"Nothing2a" = { id = "2G6V722-N5UV63W-WKVJ64X-6IMP5LP-5E7U4VG-ZPBPZE4-AEBFG2D-L5FTOQT"; };
 		};
 		folders = {
