@@ -83,26 +83,6 @@
 
   #my services
   services = {
-    syncthing = {
-        enable = true;
-	user = "xinoi";
-	dataDir = "/home/xinoi";
-	configDir = "/home/xinoi/.config/syncthing";
-	overrideFolders = true;
-	settings = {
-		devices = {
-			"MacBook" = { id = "64AV3PX-SLFG4BU-YN3CEU7-X3MTUMZ-POMGLR2-A3RC43B-HWNCWQD-2XKICQF "; };
-			"Nothing2a" = { id = "2G6V722-N5UV63W-WKVJ64X-6IMP5LP-5E7U4VG-ZPBPZE4-AEBFG2D-L5FTOQT"; };
-		};
-		folders = {
-			"nxcwy-movwy" = {
-				id = "nxcwy-movwy";
-				path = "/home/xinoi/nxcwy-movwy";
-				devices = [ "MacBook" "Nothing2a" ];
-			};
-		};
-	};
-    };
   };
 
   #hyprland
@@ -180,7 +160,6 @@
     networkmanager
     btop
     spotify
-    syncthing
     betterlockscreen
     (discord.override {
       withOpenASAR = true;
@@ -226,7 +205,7 @@
     unison
     ghc
     cabal-install
-    lxappearance
+    nwg-look
     xclip
     gcc
     go
