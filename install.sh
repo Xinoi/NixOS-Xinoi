@@ -66,6 +66,7 @@ function install {
   nixos-generate-config --force --root /mnt
   echo "copy hardware-config.nix from /mnt/etc/nixos"
   mv /mnt/etc/nixos/hardware-configuration.nix ./hardware-configuration.nix
+  git add .
   
   echo "Now installing NixOS!"
   
