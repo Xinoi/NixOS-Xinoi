@@ -11,7 +11,6 @@
       ./modules/fonts.nix 
       ./modules/networking.nix 
       ./modules/shell.nix
-      ./modules/emacs.nix
     ];
 
   # Bootloader.
