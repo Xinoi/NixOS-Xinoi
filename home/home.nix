@@ -12,8 +12,23 @@
     dunst
     xdg-user-dirs
     bibata-cursors
+    orchis-theme
+    adwaita-qt
   ]);
   
+  gtk.theme = {
+    name = "orchis";
+    package = pkgs.orchis-theme;
+  };
+
+  qt = {
+    enable = true;
+    style = {
+      name = "adwaita";
+      package = pkgs.adwaita-qt;
+    };
+  };
+
   home.pointerCursor = {
     gtk.enable = true;
     package = pkgs.bibata-cursors;
