@@ -6,10 +6,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/Hyprland";
-    end4 = {
-      url = "github:bigsaltyfishes/end-4-dots";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nvim-flake.url = "github:Xinoi/NeoVim-Flake/main";
     fenix = {
       url = "github:nix-community/fenix";
@@ -22,7 +18,6 @@
     system = "x86_64-linux";
     specialArgs = { 
       inherit inputs; 
-      inherit hyprland;
     };
     overlays = [
       nvim-flake.overlays.default
@@ -45,12 +40,14 @@
           environment.systemPackages = [ rustToolchain ];
         })
 
-        hyprland.nixosModules.default
-
         home-manager.nixosModules.home-manager {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.xinoi = import ./home/home.nix;
+          home-manager.users.xinoi = {
+            imports = [
+              ./home/home.nix 
+              ];
+          };
           home-manager.backupFileExtension = "bak";
           home-manager.extraSpecialArgs = specialArgs;
         }

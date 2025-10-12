@@ -1,8 +1,6 @@
 { hyprland, pkgs, inputs, ... }: {
 
   imports = [
-    hyprland.homeManagerModules.default
-    inputs.end4.homeManagerModules.default
     ./programs
   ];
   # Home Manager needs a bit of information about you and the paths it should
@@ -12,7 +10,18 @@
 
   home.packages = (with pkgs; [
     dunst
+    xdg-user-dirs
+    bibata-cursors
   ]);
+  
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 22;
+  };
+
+  xdg.userDirs.createDirectories = true;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
