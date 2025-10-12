@@ -1,6 +1,10 @@
-{ pkgs, inputs, lib, ... }:
+{ pkgs, inputs, lib, ... }: {  
 
-{
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
   environment.systemPackages = with pkgs; [   
     wl-clipboard
     hyprpaper

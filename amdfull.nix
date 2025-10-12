@@ -33,7 +33,9 @@
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
  
   services.resolved.enable = false;
-
+    
+  services.desktopManager.gnome.enable = true;
+  
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -63,12 +65,6 @@
 
   #my services
   services = {
-  };
-
-  #hyprland
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
   };
 
   # Configure console keymap
