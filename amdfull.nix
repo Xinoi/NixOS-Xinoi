@@ -34,25 +34,6 @@
  
   services.resolved.enable = false;
 
-  # DNS over Https
-  services.dnscrypt-proxy2 = {
-    enable = true;
-    settings = {
-      server_names = [ "cloudflare" ];
-      listen_addresses = [ "127.0.0.1:53" ];
-      ipv4_servers = true;
-      ipv6_servers = false;
-      require_nolog = true;
-      require_nofilter = true;
-      require_dnssec = true;
-
-      cache = true;
-      cache_size = 4096;
-      cache_min_ttl = 2400;
-      cache_max_ttl = 86400;
-    };
-  };
-
   services.avahi = {
     enable = true;
     nssmdns4 = true;
@@ -236,6 +217,7 @@
     man-pages
     man-pages-posix
     most
+    chromium
     xf86_input_wacom
     
     #nvim
