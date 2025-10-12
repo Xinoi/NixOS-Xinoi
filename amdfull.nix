@@ -11,6 +11,7 @@
       ./modules/fonts.nix 
       ./modules/networking.nix 
       ./modules/shell.nix
+      ./modules/seafile.nix
     ];
 
   # Bootloader.
@@ -61,10 +62,6 @@
     flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#amdfull)";
     em = "emacsclient -c -a 'nvim'";
     emt = "emacsclient -t";
-  };
-
-  #my services
-  services = {
   };
 
   # Configure console keymap
@@ -142,6 +139,8 @@
       withVencord = true;
     })
     anki
+    flatpak
+    gnome-software
     feh
     dosfstools
     git
@@ -166,6 +165,7 @@
     picom
     pavucontrol
     polybar
+    keepassxc
     rofi
     ranger
     mu

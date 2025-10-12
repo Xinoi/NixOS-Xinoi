@@ -115,6 +115,11 @@
 
   # .config files
   home.file.".config/hypr/hyprland.conf".source = ./hyprland.conf;
+  home.file.".config/hypr/hyprlock.conf".source = ./hyprlock.conf;
+  home.file.".config/hypr/hyprlock" = {
+    source = ./hyprlock;
+    recursive = true;
+  };
   home.file.".config/rofi/theme.rasi".source = ./rofi/theme.rasi; 
   home.file.".config/waybar" = {
     source = ./waybar;
