@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 
 {
   imports =
@@ -57,7 +57,7 @@
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   programs.dconf.enable = true;
-  
+
   programs.zsh.shellAliases = {
     flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#amdfull)";
     em = "emacsclient -c -a 'nvim'";
@@ -123,6 +123,7 @@
     coreutils
     vim
     emacs
+    helix
     wget
     unzip
     fd
@@ -215,9 +216,6 @@
     most
     chromium
     xf86_input_wacom
-    
-    #nvim
-    inputs.nvim-flake.packages.x86_64-linux.nvim
   ];
 
   nixpkgs.config = {
