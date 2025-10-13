@@ -56,6 +56,8 @@
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
 
+  services.flatpak.enable = true;
+
   programs.dconf.enable = true;
 
   programs.zsh.shellAliases = {
@@ -220,6 +222,7 @@
 
   nixpkgs.config = {
     allowUnfree = true;
+    allowUnsupportedSystem = true;
   };
 
   documentation = {
