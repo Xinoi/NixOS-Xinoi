@@ -9,7 +9,7 @@
       { label = "logout"; action = "hyprctl dispatch exit"; text = "Logout"; keybind = "e"; }
       { label = "reboot"; action = "systemctl reboot"; text = "Reboot"; keybind = "r"; }
       { label = "shutdown"; action = "systemctl poweroff"; text = "Poweroff"; keybind = "s"; }
-      { label = "suspend"; action = "systemctl dispatch suspend"; text = "Suspend"; keybind = "d"; }
+      { label = "suspend"; action = "systemctl suspend"; text = "Suspend"; keybind = "d"; }
       { label = "hibernate"; action = ""; text = "Hybernate"; keybind = "h"; }
     ];
 

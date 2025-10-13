@@ -15,7 +15,7 @@
     orchis-theme
     adwaita-qt
   ]);
-  
+
   gtk.theme = {
     name = "orchis";
     package = pkgs.orchis-theme;
