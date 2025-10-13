@@ -49,6 +49,7 @@
       which-key.enable = true;
       web-devicons.enable = true;
       snacks.enable = true;
+      markview.enable = true;
     };
 
     plugins.lsp = {
@@ -123,9 +124,6 @@
 	key = "<leader>gl";
 	options.desc = "Lazygit";
       }
-
-
-
     ];
   };
 }
