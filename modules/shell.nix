@@ -1,5 +1,13 @@
 {pkgs, ...}:
 {
+
+  environment.systemPackages = with pkgs; [
+    tealdeer
+    linux-manual
+    man-pages
+    man-pages-posix
+  ];
+  
   # default shell
   users.defaultUserShell = pkgs.zsh;
 
