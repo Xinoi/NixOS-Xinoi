@@ -172,6 +172,11 @@
     ];
                             
     extraConfigLua = ''
+  
+      vim.opt.fillchars = {
+	eob = ' ',
+      },
+
       require("ibl").setup {
 	indent = { 
           priority = 2,         
