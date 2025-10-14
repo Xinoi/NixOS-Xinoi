@@ -134,6 +134,7 @@
     hyprlock
     pywal16
     hyprpaper
+    waybar-mpris
   ];
 
   home.activation = {
