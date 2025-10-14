@@ -90,9 +90,10 @@ function install {
     exit 1
   fi
 
+  # copy repo
   echo "Copying repository into installed system..."
   TARGET_HOME="/mnt/home/$(ls /mnt/home | head -n 1)"  # grab the first home user (usually the one created in flake)
-  REPO_NAME=$(basename "$(pwd)")
+  REPO_NAME="NixOS-Xinoi"
 
   if [ -d "$TARGET_HOME" ]; then
     mkdir -p "$TARGET_HOME/$REPO_NAME"
