@@ -6,8 +6,11 @@
     linux-manual
     man-pages
     man-pages-posix
+    wikiman
   ];
   
+  documentation.dev.enable = true;
+
   # default shell
   users.defaultUserShell = pkgs.zsh;
 
