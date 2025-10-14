@@ -14,7 +14,11 @@
     };
 
     opts = {
+      clipboard = "unnamedplus";
+      number = true;
       relativenumber = true;
+      cursorline = true;
+      cursorlineopt = "both";
       shiftwidth = 2;
     }; 
 
@@ -23,13 +27,46 @@
     };
 
     clipboard.providers.wl-copy.enable = true;
-    colorschemes.rose-pine.enable = true;
+    colorschemes.everforest.enable = true;
 
     plugins = {
       lualine.enable = true;
       nvim-autopairs.enable = true;
       lspconfig.enable = true;
       blink-cmp.enable = true;
+      blink-cmp.settings = {
+	completion = {
+	  list.selection = {
+	    preselect = false;
+	  };
+	  documentation = {
+	    auto_show = true;
+	  };
+	};
+	keymap = {
+	  "<Tab>" = [
+	    "select_next"
+	    "fallback"
+	  ];
+	  "<S-Tab>" = [
+	    "select_prev"
+	    "fallback"
+	  ];
+	  "<Down>" = [
+	    "select_next"
+	    "fallback"
+	  ];
+	  "<Up>" = [
+	    "select_prev"
+	    "fallback"
+	  ];
+	  "<C-space>" = [
+	    "show"
+	    "show_documentation"
+	    "hide_documentation"
+	  ];
+	};
+      };
       treesitter = {
 	enable = true;
 	settings = {
@@ -50,6 +87,9 @@
       web-devicons.enable = true;
       snacks.enable = true;
       markview.enable = true;
+      indent-blankline.enable = true;
+      dressing.enable = true;
+      illuminate.enable = true; 
     };
 
     plugins.lsp = {
@@ -77,6 +117,11 @@
 	action = "<cmd>Trouble diagnostics toggle<cr>";
 	key = "<leader>x";
       }
+      {
+	action = "<cmd>Markview Toggle<cr>";
+	key = "<leader>mt";
+      }
+      
 
       # Snacks
       {
@@ -125,5 +170,21 @@
 	options.desc = "Lazygit";
       }
     ];
+                            
+    extraConfigLua = ''
+      require("ibl").setup {
+	indent = { 
+          priority = 2,         
+	  char = "▏",
+	},
+	scope = { 
+	  enabled = true,
+	  show_start = false,
+	  show_end = false,
+	  highlight = { "Function", "Label" },
+	  priority = 500,
+	},
+      }
+    '';
   };
 }
