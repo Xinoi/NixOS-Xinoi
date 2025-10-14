@@ -10,6 +10,7 @@
       font-awesome
       fira-code-symbols
       symbola
+      lexend
       nerd-fonts.comic-shanns-mono
       nerd-fonts.shure-tech-mono
       nerd-fonts.lekton
