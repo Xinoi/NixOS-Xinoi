@@ -9,7 +9,7 @@
   home.homeDirectory = "/home/xinoi";
 
   home.packages = (with pkgs; [
-    dunst
+    swaynotificationcenter
     xdg-user-dirs
     bibata-cursors
     orchis-theme
