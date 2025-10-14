@@ -3,12 +3,13 @@
   "position": "top",
   "height": 40,
   "spacing": 2,
+  "margin": 3,
   "exclusive": true,
   "gtk-layer-shell": true,
   "passthrough": false,
   "fixed-center": true,
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["mpris"],
+  "modules-left": ["hyprland/window", "mpris"],
+  "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "cpu",
     "memory",
@@ -26,7 +27,6 @@
     "exec": "spotifatius monitor",
   },
   "mpris": {
-    "player": "spotify",
     "dynamic-order": ["artist", "title"],
     "format": "{player_icon} {dynamic}",
     "format-paused": "{status_icon} <i>{dynamic}</i>",

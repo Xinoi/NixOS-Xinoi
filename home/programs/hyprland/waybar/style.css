@@ -2,41 +2,40 @@
   min-height: 0;
   min-width: 0;
   font-family: Lexend, "JetBrainsMono NFP";
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 400;
 }
 
 window#waybar {
   transition-property: background-color;
   transition-duration: 0.5s;
-  /* background-color: #1e1e2e; */
-  /* background-color: #181825; */
-  background-color: #11111b;
-  /* background-color: rgba(24, 24, 37, 0.6); */
+  background-color: rgba(24, 24, 37, 0.8);
+  border-radius: 6px;
+  padding: 0.3rem;
 }
 
 #workspaces button {
   padding: 0.3rem 0.6rem;
   margin: 0.4rem 0.25rem;
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 6px;
-  /* background-color: #181825; */
-  background-color: #1e1e2e;
+  background-color: rgba(30,30,46,0.6);
   color: #cdd6f4;
 }
 
 #workspaces button:hover {
-  color: #1e1e2e;
-  background-color: #cdd6f4;
+  color: #cdd6f4;
+  background-color: rgba(64, 64, 91, 0.8);
 }
 
 #workspaces button.active {
-  background-color: #1e1e2e;
-  color: #89b4fa;
+  background-color: rgba(64, 64, 91,0.95);
+  color: #cdd6f4;
 }
 
 #workspaces button.urgent {
   background-color: #1e1e2e;
-  color: #f38ba8;
+  color: #e07a8a;
 }
 
 #clock,
@@ -53,21 +52,20 @@ window#waybar {
   padding: 0.3rem 0.6rem;
   margin: 0.4rem 0.25rem;
   border-radius: 6px;
-  /* background-color: #181825; */
-  background-color: #1e1e2e;
+  background-color: rgba(30,30,46,0.6);
 }
 
 #mpris.playing {
-  color: #a6e3a1;
+  color: #cdd6f4;
 }
 
 #mpris.paused {
-  color: #9399b2;
+  color: #cdd6f4;
 }
 
 #custom-sep {
   padding: 0px;
-  color: #585b70;
+  color: #cdd6f4;
 }
 
 window#waybar.empty #window {
@@ -75,19 +73,19 @@ window#waybar.empty #window {
 }
 
 #cpu {
-  color: #94e2d5;
+  color: #cdd6f4;
 }
 
 #memory {
-  color: #cba6f7;
+  color: #cdd6f4;
 }
 
 #clock {
-  color: #74c7ec;
+  color: #cdd6f4;
 }
 
 #clock.simpleclock {
-  color: #89b4fa;
+  color: #cdd6f4;
 }
 
 #window {
@@ -95,11 +93,11 @@ window#waybar.empty #window {
 }
 
 #pulseaudio {
-  color: #b4befe;
+  color: #cdd6f4;
 }
 
 #pulseaudio.muted {
-  color: #a6adc8;
+  color: #cdd6f4;
 }
 
 #custom-logo {
@@ -112,5 +110,5 @@ window#waybar.empty #window {
 
 tooltip {
   background-color: #181825;
-  border: 2px solid #89b4fa;
+  border: 1px solid rgba(255,255,255,0.9);
 }
