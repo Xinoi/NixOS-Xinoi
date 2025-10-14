@@ -90,6 +90,21 @@ function install {
     exit 1
   fi
 
+  echo "Copying repository into installed system..."
+  TARGET_HOME="/mnt/home/$(ls /mnt/home | head -n 1)"  # grab the first home user (usually the one created in flake)
+  REPO_NAME=$(basename "$(pwd)")
+
+  if [ -d "$TARGET_HOME" ]; then
+    mkdir -p "$TARGET_HOME/$REPO_NAME"
+    cp -r . "$TARGET_HOME/$REPO_NAME"
+    chown -R 1000:100 "$TARGET_HOME/$REPO_NAME" 2>/dev/null || true
+    echo "Repository copied to $TARGET_HOME/$REPO_NAME"
+  else
+    echo "Warning: could not find user home. Copying to /mnt/root instead."
+    mkdir -p /mnt/root/$REPO_NAME
+    cp -r . /mnt/root/$REPO_NAME
+  fi
+
   echo "If everything worked you can now reboot! Good Luck :)" 
 }
 
