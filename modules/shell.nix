@@ -21,7 +21,7 @@
     ohMyZsh = {
       enable = true;
       plugins = [ "git" "cp" ];
-      theme = "darkblood";
+      theme = "gozilla";
     };
   };
 }
