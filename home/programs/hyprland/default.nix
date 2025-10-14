@@ -93,15 +93,17 @@
     '';
   };
 
+  home.file.".config/hypr/wallpapers/red-anime.jpg".source = ./wallpapers/red-anime.jpg;
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = ["/home/xinoi/NixOS-Xinoi/home/programs/hyprland/wallpapers/red-anime.jpg"];
-      wallpaper = [ ", /home/xinoi/NixOS-Xinoi/home/programs/hyprland/wallpapers/red-anime.jpg" ];
+      preload = [ "${config.home.homeDirectory}/.config/hypr/wallpapers/red-anime.jpg" ];
+      wallpaper = [ ", ${config.home.homeDirectory}/.config/hypr/wallpapers/red-anime.jpg" ];
     };
   };
 
   services.dunst.enable = true;
+  services.dunst.configFile = "${config.home.homeDirectory}/NixOS-Xinoi/home/programs/hyprland/dunst/dunstrc";
 
   services.hypridle = {
     enable = true;

@@ -2,7 +2,7 @@
 let 
   pkgs_2505 = import (builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-25.05.tar.gz";
-    sha256 = "1v7cpghxf5rl1l0rj32n89jv5w7z34lld0kiai8kd50s97fvw8n1";
+    sha256 = "1rxn634v8im87na9ig2dg8nywrb5qhz7iybw4bbbvfcikq5j0673";
   }) {
     system = pkgs.system;
     config = config.nixpkgs.config;

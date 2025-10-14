@@ -14,7 +14,6 @@
     wofi
     pywal
     hyprpicker
-    swaynotificationcenter
     libnotify
     swww
     pulseaudio

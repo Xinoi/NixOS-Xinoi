@@ -10,8 +10,6 @@
     syntaxHighlighting.enable = true;
     shellAliases = {
       ll = "ls -l";
-      oo = "cd /home/xinoi/nxcwy-movwy/Obsidian/Life";
-      h = "cd /home/xinoi";
       flake-config = "nvim ~/NixOS-Xinoi/flake.nix";
       config = "nvim ~/NixOS-Xinoi/configuration.nix";
       e = "exit";
