@@ -190,7 +190,6 @@
     go
     gotools
     libreoffice
-    texlive.combined.scheme-full
     hunspell
     hunspellDicts.de_DE
     hunspellDicts.en_US
@@ -212,9 +211,6 @@
     heroic
     pandoc
     ffmpeg
-    linux-manual
-    man-pages
-    man-pages-posix
     most
     chromium
     xf86_input_wacom
