@@ -1,4 +1,4 @@
-{ hyprland, pkgs, inputs, ... }: {
+{ pkgs,  caelestia-shell, ... }: {
 
   imports = [
     ./programs

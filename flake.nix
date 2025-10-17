@@ -10,17 +10,22 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, fenix, home-manager, hyprland, nixvim, ... }@inputs:
+  outputs = { self, nixpkgs, fenix, home-manager, caelestia-shell, ... }@inputs:
   let
     system = "x86_64-linux";
     specialArgs = { 
       inherit inputs;
+      inherit caelestia-shell;
     };
     overlays = [
       fenix.overlays.default
