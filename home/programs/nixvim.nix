@@ -99,6 +99,7 @@
 	clangd.enable = true;
 	pyright.enable = true;
 	gopls.enable = true;
+	vtsls.enable = true;
 	rust_analyzer = {
 	  enable = true;
 	  installCargo = true;
