@@ -11,12 +11,12 @@
     settings = {
       general = {
 	after_sleep_cmd = "hyprctl dispatch dpms on";
-	lock_cmd = "hyprlock";
+	lock_cmd = "caelestia shell lock lock";
       };
       listener = [
 	{
 	  timeout = 300;
-	  on-timeout = "hyprlock";
+	  on-timeout = "caelestia shell lock lock";
 	}
 	{
 	  timeout = 600;
