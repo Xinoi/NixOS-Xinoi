@@ -114,7 +114,6 @@
     gcc 
     libreoffice
     p7zip 
-    inputs.nvim-flake.packages.x86_64-linux.nvim
   ]; 
 
   system.stateVersion = "24.05";
