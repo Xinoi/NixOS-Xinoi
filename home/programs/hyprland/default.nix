@@ -1,7 +1,8 @@
 {pkgs, lib, config, ...}: {
 
   imports = [
-    ./quickshell.nix
+    ./caelestia.nix
+    ./noctalia.nix
   ];
 
   home.file.".config/hypr/wallpapers/default.jpg".source = ./wallpapers/default.jpg;

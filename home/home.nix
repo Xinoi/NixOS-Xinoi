@@ -1,4 +1,4 @@
-{ pkgs,  caelestia-shell, ... }: {
+{ pkgs, ... }: {
 
   imports = [
     ./programs
