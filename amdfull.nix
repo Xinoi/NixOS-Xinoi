@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports =
@@ -214,6 +214,7 @@
     most
     chromium
     xf86_input_wacom
+    inputs.noctalia.packages.${system}.default
   ];
 
   nixpkgs.config = {
