@@ -186,6 +186,7 @@
     cabal-install
     nwg-look
     xclip
+    hyprshot
     gcc
     go
     gotools
