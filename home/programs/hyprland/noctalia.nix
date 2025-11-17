@@ -1,14 +1,15 @@
-{ pkgs, inputs, ... }:
-{
-  home-manager.users.drfoobar = {
-    # import the home manager module
-    imports = [
-      inputs.noctalia.homeModules.default
-    ];
+{ pkgs, inputs, ... }: {
+  imports = [
+    inputs.noctalia.homeModules.default
+  ];
 
-    # configure options
-    programs.noctalia-shell = {
-      enable = true;
-    };
+  home.packages = with pkgs; [
+    cava
+    ddcutil
+  ];
+
+  programs.noctalia-shell = {
+    enable = true;
   };
+
 }
