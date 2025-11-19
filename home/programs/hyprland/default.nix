@@ -1,8 +1,9 @@
-{pkgs, lib, config, ...}: {
+{pkgs, lib, config, inputs, ...}: {
 
   imports = [
     ./caelestia.nix
     ./noctalia.nix
+    inputs.vicinae.homeManagerModules.default
   ];
 
   home.file.".config/hypr/wallpapers/default.jpg".source = ./wallpapers/default.jpg;
@@ -32,12 +33,19 @@
     };
   };
 
+  services.vicinae = {
+        enable = true; # default: false
+        autoStart = true; # default: true
+  };
+
   home.packages = with pkgs; [
     hyprlock
     pywal16
     hyprpaper
     waybar-mpris
     playerctl
+    pywalfox-native
+    nwg-displays
   ];
 
   home.activation = {
