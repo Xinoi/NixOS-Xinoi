@@ -11,7 +11,6 @@
       ./modules/fonts.nix 
       ./modules/networking.nix 
       ./modules/shell.nix
-      ./modules/seafile.nix
     ];
 
   # Bootloader.
@@ -213,6 +212,7 @@
     pandoc
     ffmpeg
     most
+    seafile-client
     chromium
     xf86_input_wacom
     inputs.noctalia.packages.${system}.default
