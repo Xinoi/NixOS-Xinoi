@@ -50,7 +50,7 @@ sudo docker exec "$DB_CONTAINER" mariadb-dump -u "$DB_USER" -p"$DB_PASSWORD" --s
 log_message "Rsyncing Seafile data directory from $SEAFILE_DATA_SOURCE to $DATA_DIR..."
 # The initial rsync is performed here, creating the 'data' folder structure.
 # Using rsync means only changed blocks are copied, which is fast locally.
-rsync -az "$SEAFILE_DATA_SOURCE"/ "$DATA_DIR"/ || exit_on_error "Rsync of Seafile data failed."
+rsync -Paz "$SEAFILE_DATA_SOURCE"/ "$DATA_DIR"/ || exit_on_error "Rsync of Seafile data failed."
 
 # --- 4. Create Tarball ---
 log_message "Creating compressed archive: $ARCHIVE_NAME"
