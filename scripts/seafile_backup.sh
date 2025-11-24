@@ -56,7 +56,7 @@ rsync -az "$SEAFILE_DATA_SOURCE"/ "$DATA_DIR"/ || exit_on_error "Rsync of Seafil
 log_message "Creating compressed archive: $ARCHIVE_NAME"
 # Navigate to the main backup directory, then tar the subdirectories 'data' and 'databases'
 cd "$BACKUP_DIR" || exit_on_error "Failed to navigate to backup directory."
-tar -czvf "$ARCHIVE_NAME" data databases || exit_on_error "Failed to create tar archive."
+tar -czf "$ARCHIVE_NAME" data databases || exit_on_error "Failed to create tar archive."
 
 # --- 5. Rsync over Network (Push to PC) ---
 log_message "Transferring $ARCHIVE_NAME to remote PC ($REMOTE_HOST)..."
