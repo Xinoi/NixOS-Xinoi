@@ -78,6 +78,7 @@ rsync -Paz -e "ssh -S ${SSH_SOCKET}" "$ARCHIVE_NAME" "$REMOTE_USER@$REMOTE_HOST:
 
 if [ $? -ne 0 ]; then
     log_message "WARNING: Rsync transfer failed or was interrupted. The file is still on the server."
+    ssh -O exit -S ${SSH_SOCKET} ${DESTINATION_USER}@${DESTINATION_HOST} 2>/dev/null
 else
     log_message "Rsync transfer successful."
     
