@@ -19,6 +19,8 @@
       nerd-fonts.code-new-roman
       roboto
       inter
+      papirus-icon-theme
+      hicolor-icon-theme
     ];
     fontconfig.defaultFonts = {
       monospace = [ "JetBrainsMono Nerd Font" ];
