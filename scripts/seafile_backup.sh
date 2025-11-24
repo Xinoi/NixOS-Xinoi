@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # --- Configuration ---
-BACKUP_DIR="/home/xinoi/backup"
+BACKUP_DIR="/media/xinoi/raspiStorage/seafile_backup"
 SEAFILE_DATA_SOURCE="/media/xinoi/raspiStorage/seafile-data/seafile"
 DB_CONTAINER="seafile-mysql"
 DB_USER="seafile"
-DB_PASSWORD="<YOUR_DB_PASSWORD>" # !! REPLACE ME !!
-REMOTE_USER="xinoi"
-REMOTE_HOST="<YOUR_PC_IP_OR_HOSTNAME>" # !! REPLACE ME !!
-REMOTE_PATH="/path/to/backup/on/pc/" # !! REPLACE ME !!
+DB_PASSWORD="<db_password>"
+REMOTE_USER="<user>"
+REMOTE_HOST="<host>"
+REMOTE_PATH="/home/xinoi/Documents/raspi_backup/seafile_backup"
 
 # Create date variables for naming the backup file
-DATE=$(date +%d.%m.%Y)
-ARCHIVE_NAME="backup_$DATE.tar.gz"
+DATE=$(date +%d.%m.%Y-%H%M%S)
+ARCHIVE_NAME="seafile_backup_$DATE.tar.gz"
 DATA_DIR="$BACKUP_DIR/data"
 DB_DIR="$BACKUP_DIR/databases"
 
@@ -25,11 +25,24 @@ function log_message {
 function exit_on_error {
     log_message "ERROR: $1" >&2
     log_message "Backup script failed."
+    ssh -O exit -S ${SSH_SOCKET} ${REMOTE_USER}@${REMOTE_HOST} 2>/dev/null
     exit 1
 }
 
 # --- 1. Preparation and Cleanup ---
 log_message "Starting Seafile hot backup process..."
+
+# creating ssh socket
+SSH_SOCKET="/tmp/ssh-mux-${REMOTE_USER}@${REMOTE_HOST}:22"
+
+echo "Establishing secure connection to host..."
+
+ssh -M -S ${SSH_SOCKET} -Nf ${REMOTE_USER}@${REMOTE_HOST}
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to establish SSH connection. Exiting."
+    ssh -O exit -S ${SSH_SOCKET} ${REMOTE_USER}@${REMOTE_HOST} 2>/dev/null
+    exit 1
+fi
 
 # Create or clear the necessary directories
 mkdir -p "$DATA_DIR" || exit_on_error "Failed to create data directory."
@@ -61,7 +74,7 @@ tar -czf "$ARCHIVE_NAME" data databases || exit_on_error "Failed to create tar a
 # --- 5. Rsync over Network (Push to PC) ---
 log_message "Transferring $ARCHIVE_NAME to remote PC ($REMOTE_HOST)..."
 # -P flag provides progress and allows partial resume for slow, unstable links.
-rsync -Paz "$ARCHIVE_NAME" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH"
+rsync -Paz -e "ssh -S ${SSH_SOCKET}" "$ARCHIVE_NAME" "$REMOTE_USER@$REMOTE_HOST:$REMOTE_PATH"
 
 if [ $? -ne 0 ]; then
     log_message "WARNING: Rsync transfer failed or was interrupted. The file is still on the server."
@@ -72,6 +85,7 @@ else
     log_message "Cleaning up local archive and temporary directories."
     rm -f "$ARCHIVE_NAME"
     rm -rf data databases
+    ssh -O exit -S ${SSH_SOCKET} ${DESTINATION_USER}@${DESTINATION_HOST} 2>/dev/null
 fi
 
 log_message "Backup process complete."
