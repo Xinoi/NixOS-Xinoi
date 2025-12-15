@@ -3,7 +3,7 @@
 {
   hardware.enableRedistributableFirmware = true; 
   hardware.firmware = [ pkgs.linux-firmware ];
-
+  hardware.wooting.enable = true;
   hardware.graphics = {
     enable = true; 
   };

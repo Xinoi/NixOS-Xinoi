@@ -99,7 +99,6 @@
 
   programs.steam = {
     enable = true;
-    gamescopeSession.enable = true;
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     localNetworkGameTransfers.openFirewall = true;
@@ -161,7 +160,6 @@
     winetricks
     neofetch
     xorg.xev
-    obsidian
     (prismlauncher.override {
       jdks = [ jdk21_headless ];
     })
@@ -216,6 +214,8 @@
     seafile-client
     chromium
     xf86_input_wacom
+    wootility
+    hydralauncher
     inputs.noctalia.packages.${system}.default
   ];
 
