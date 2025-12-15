@@ -10,10 +10,14 @@
   virtualisation = {
     podman = {
       enable = true;
-      dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
   };
+
+  virtualisation.docker = {
+    enable = true;
+  };
+  users.users.xinoi.extraGroups = [ "docker" ];
 
   environment.systemPackages = [
     pkgs.podman-desktop
