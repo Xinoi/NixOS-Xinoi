@@ -1,37 +1,11 @@
 {pkgs, lib, config, inputs, ...}: {
 
   imports = [
-    ./caelestia.nix
     ./noctalia.nix
     inputs.vicinae.homeManagerModules.default
   ];
 
   home.file.".config/hypr/wallpapers/default.jpg".source = ./wallpapers/default.jpg;
-
-  services.hypridle = {
-    enable = true;
-    settings = {
-      general = {
-	after_sleep_cmd = "hyprctl dispatch dpms on";
-	lock_cmd = "caelestia shell lock lock";
-      };
-      listener = [
-	{
-	  timeout = 300;
-	  on-timeout = "caelestia shell lock lock";
-	}
-	{
-	  timeout = 600;
-	  on-timeout = "hyprctl dispatch dpms off";
-	  on-resume = "hyprctl dispatch dpms on";
-	}
-	{
-	  timeout = 1800;
-	  on-timeout = "systemctl suspend";
-	}
-      ];
-    };
-  };
 
   services.vicinae = {
         enable = true; # default: false
@@ -69,7 +43,7 @@
     source = ./hyprlock;
     recursive = true;
   };
-  home.file.".config/rofi/theme.rasi".source = ./rofi/theme.rasi; 
+  home.file.".config/rofi/theme.rasi".source = ./rofi/theme.rasi;
   home.file.".config/waybar" = {
     source = ./waybar;
     recursive = true;
