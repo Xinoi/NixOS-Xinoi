@@ -8,8 +8,8 @@
       ./modules/hyprland.nix
       ./modules/drivers.nix
       ./modules/virtualisation.nix
-      ./modules/fonts.nix 
-      ./modules/networking.nix 
+      ./modules/fonts.nix
+      ./modules/networking.nix
       ./modules/shell.nix
     ];
 
@@ -22,25 +22,19 @@
     };
     grub = {
       enable = true;
-      efiSupport = true; 
+      efiSupport = true;
       device = "nodev";
     };
-  }; 
+  };
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   networking.hostName = "amdfull"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
- 
+
   services.resolved.enable = false;
-    
+
   services.desktopManager.gnome.enable = true;
-  
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -61,8 +55,6 @@
 
   programs.zsh.shellAliases = {
     flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#amdfull)";
-    em = "emacsclient -c -a 'nvim'";
-    emt = "emacsclient -t";
   };
 
   # Configure console keymap
@@ -73,7 +65,7 @@
     initialHashedPassword = "$y$j9T$/WxfqHIXS2T5K1wdKK0HR.$SuEFBvpKGYf/BpXoWWYfErSNDIGnwXt9CwUmDn8Ejs/";
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" "wheel" "gamemode" "podman" ];
+    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
   };
 
   # cleaning
@@ -83,15 +75,15 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
-  
-  # thunar 
+
+  # thunar
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
     thunar-volman
     thunar-archive-plugin
   ];
-  services.gvfs.enable = true; 
+  services.gvfs.enable = true;
   services.tumbler.enable = true;
 
   # Install firefox.
@@ -123,8 +115,6 @@
   environment.systemPackages = with pkgs; [
     coreutils
     vim
-    emacs
-    helix
     wget
     unzip
     fd
@@ -142,7 +132,6 @@
     })
     anki
     flatpak
-    gnome-software
     feh
     dosfstools
     git
@@ -183,6 +172,7 @@
     ghc
     cabal-install
     nwg-look
+    nwg-displays
     xclip
     hyprshot
     gcc
@@ -198,7 +188,7 @@
     marksman
     slurp
     kdePackages.kate
-    grim 
+    grim
     p7zip
     ncdu
     gparted
