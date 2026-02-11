@@ -6,7 +6,8 @@ in
   disko.devices = {
     disk = {
       main = {
-        device = "/dev/vda";
+        # TODO
+        device = "/dev/[diskname]";
         type = "disk";
         content = {
           type = "gpt";
