@@ -7,11 +7,7 @@
 
   environment.systemPackages = with pkgs; [   
     wl-clipboard
-    hyprpaper
-    waybar
     hyprlock
-    eww
-    wofi
     pywal
     hyprpicker
     libnotify

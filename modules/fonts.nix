@@ -12,11 +12,11 @@
       lexend
       nerd-fonts.comic-shanns-mono
       nerd-fonts.shure-tech-mono
-      nerd-fonts.lekton
       nerd-fonts.iosevka
       nerd-fonts.jetbrains-mono
       nerd-fonts.fira-code
       nerd-fonts.code-new-roman
+      nerd-fonts.hurmit
       roboto
       inter
       papirus-icon-theme
