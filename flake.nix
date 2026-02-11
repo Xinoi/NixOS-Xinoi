@@ -21,7 +21,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, fenix, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, fenix, ... }@inputs:
   let
     system = "x86_64-linux";
     specialArgs = {
@@ -48,6 +48,17 @@
         })
 
         ./amdfull.nix
+	home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.xinoi = {
+	      imports = [
+	        ./home/home.nix
+	      ];
+	    };
+            home-manager.backupFileExtension = "bak";
+            home-manager.extraSpecialArgs = specialArgs;
+	}
       ];
     };
 

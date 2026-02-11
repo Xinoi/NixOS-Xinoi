@@ -19,15 +19,15 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.loader = {
-    efi = {
-      canTouchEfiVariables = true;
-    };
     grub = {
       enable = true;
       efiSupport = true;
       device = "nodev";
+      enableCryptodisk = true;
     };
   };
+
+  boot.loader.efi.canTouchEfiVariables = true;
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
@@ -51,6 +51,8 @@
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
 
+  security.polkit.enable = true;
+
   services.flatpak.enable = true;
 
   programs.dconf.enable = true;
@@ -73,6 +75,9 @@
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
+
+  # run binaries
+  programs.nix-ld.enable = true;
 
   # thunar
   programs.thunar.enable = true;
@@ -110,8 +115,10 @@
   environment.systemPackages = with pkgs; [
     coreutils
     vim
+    neovim
     wget
     unzip
+    fastfetch
     fd
     libtool
     cmake
@@ -125,17 +132,17 @@
       withOpenASAR = true;
       withVencord = true;
     })
-    anki
     flatpak
     feh
     dosfstools
     git
+    lxqt.lxqt-policykit
     git-credential-manager
     gh
     jdk
     lazygit
-    i3
     kitty
+    ghostty
     lutris
     mpv
     bottles
@@ -147,14 +154,6 @@
     (prismlauncher.override {
       jdks = [ jdk21_headless ];
     })
-    picom
-    pavucontrol
-    polybar
-    keepassxc
-    rofi
-    ranger
-    mu
-    isync
     ripgrep
     rsync
     steam
@@ -165,18 +164,13 @@
     inotify-tools
     unison
     ghc
-    cabal-install
     nwg-look
     nwg-displays
-    xclip
     hyprshot
     gcc
     go
     gotools
     libreoffice
-    hunspell
-    hunspellDicts.de_DE
-    hunspellDicts.en_US
     pywal16
     colorz
     gdb
@@ -200,7 +194,6 @@
     chromium
     xf86_input_wacom
     wootility
-    hydralauncher
     inputs.noctalia.packages.${system}.default
   ];
 
@@ -214,6 +207,7 @@
     dev.enable = true;
     man = {
       enable = true;
+      generateCaches = false;
       man-db.enable = true;
     };
   };
