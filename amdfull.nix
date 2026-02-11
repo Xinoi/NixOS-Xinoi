@@ -55,10 +55,6 @@
 
   programs.dconf.enable = true;
 
-  programs.zsh.shellAliases = {
-    flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#amdfull)";
-  };
-
   # Configure console keymap
   console.keyMap = "de";
 
