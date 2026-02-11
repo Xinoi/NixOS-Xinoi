@@ -1,40 +1,49 @@
+let
+  # Define standard SSD + Btrfs optimizations once
+  btrfsOpts = [ "compress=zstd:1" "noatime" "discard=async" "space_cache=v2" ];
+in
 {
   disko.devices = {
     disk = {
-      myDisk = {
-        # CHANGE
+      main = {
         device = "/dev/vda";
         type = "disk";
         content = {
           type = "gpt";
           partitions = {
             ESP = {
+              size = "512M";
               type = "EF00";
-              size = "512MiB";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-              };
-            };
-            root = {
-              size = "90%";
-              content = {
-                type = "filesystem";
-                format = "btrfs";
-                mountpoint = "/";
-                subvolumes = {
-                  "@": {};
-                  "@home": {};
-                  "@nix": {};
-                };
-                options = "compress=zstd:3,ssd,discard=async";
+                mountOptions = [ "umask=0077" ];
               };
             };
             swap = {
-              size = "8GiB";
+              size = "8G";
               content = {
                 type = "swap";
+                discardPolicy = "both";
+                randomEncryption = true;
+              };
+            };
+            luks = {
+              size = "100%";
+              content = {
+                type = "luks";
+                name = "crypted";
+                settings.allowDiscards = true;
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+                  subvolumes = {
+                    "/" = { mountpoint = "/"; mountOptions = btrfsOpts; };
+                    "/home" = { mountpoint = "/home"; mountOptions = btrfsOpts; };
+                    "/nix" = { mountpoint = "/nix"; mountOptions = btrfsOpts; };
+                  };
+                };
               };
             };
           };
