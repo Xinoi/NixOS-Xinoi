@@ -2,10 +2,10 @@
 
 {
   imports = [
-    ./hardware-configuration.nix 
-    ./modules/hyprland.nix 
+    ./hardware-configuration.nix
+    ./modules/hyprland.nix
     ./modules/fonts.nix
-    ./modules/networking.nix 
+    ./modules/networking.nix
     ./modules/shell.nix
   ];
 
@@ -15,11 +15,11 @@
     };
     grub = {
       enable = true;
-      efiSupport = true; 
+      efiSupport = true;
       device = "nodev";
     };
-  }; 
-    
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking.hostName = "lite";
@@ -27,9 +27,9 @@
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
- 
+
   services = {
-    xserver.enable = true; 
+    xserver.enable = true;
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
     displayManager.defaultSession = "gnome";
@@ -65,11 +65,7 @@
     allowUnfree = true;
   };
 
-  programs.zsh.shellAliases = {
-    flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#lite)";
-  };
-
-  # thunar 
+  # thunar
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
   programs.thunar.plugins = with pkgs.xfce; [
@@ -77,11 +73,11 @@
   ];
 
   services.openssh.enable = true;
-  services.gvfs.enable = true; 
+  services.gvfs.enable = true;
   services.tumbler.enable = true;
-  
-  programs.firefox.enable = true; 
-  
+
+  programs.firefox.enable = true;
+
   environment.gnome.excludePackages = (with pkgs; [
     atomix # puzzle game
     cheese # webcam tool
@@ -96,25 +92,25 @@
 
   environment.systemPackages = with pkgs; [
     coreutils
-    vim 
-    wget 
-    unzip 
-    btop 
-    spotify 
-    git 
-    gh 
-    kitty 
-    mpv 
-    pavucontrol 
-    ranger 
-    ripgrep 
+    vim
+    wget
+    unzip
+    btop
+    spotify
+    git
+    gh
+    kitty
+    mpv
+    pavucontrol
+    ranger
+    ripgrep
     dracula-theme
     dracula-icon-theme
-    zathura 
-    gcc 
+    zathura
+    gcc
     libreoffice
-    p7zip 
-  ]; 
+    p7zip
+  ];
 
   system.stateVersion = "24.05";
 

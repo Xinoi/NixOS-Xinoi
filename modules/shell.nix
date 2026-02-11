@@ -8,29 +8,17 @@
     man-pages-posix
     wikiman
   ];
-  
+
   documentation.dev.enable = true;
 
-  # default shell
-  users.defaultUserShell = pkgs.zsh;
-
-  programs.zsh = {
+  programs.fish = {
     enable = true;
-    enableCompletion = true;
-    autosuggestions.enable = true;
-    syntaxHighlighting.enable = true;
-    shellAliases = {
-      ll = "ls -l";
-      flake-config = "nvim ~/NixOS-Xinoi/flake.nix";
-      config = "nvim ~/NixOS-Xinoi/configuration.nix";
-      e = "exit";
-      pwo = "poweroff";
-      lg = "lazygit";
-    };
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" "cp" ];
-      theme = "gozilla";
-    };
+    interactiveShellInit = ''
+        set fish_greeting # Disable greeting
+    '';
   };
+
+  # default shell
+  users.defaultUserShell = pkgs.fish;
+
 }

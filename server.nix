@@ -8,7 +8,7 @@
   ];
 
   boot.loader.systemd-boot.enable = true;
-  
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   networking = {
@@ -45,10 +45,6 @@
 
   nixpkgs.config = {
     allowUnfree = true;
-  };
-
-  programs.zsh.shellAliases = {
-    flake-update = "(cd ~/NixOS-Xinoi; sudo nix flake update && sudo nixos-rebuild switch --flake .#server)";
   };
 
   services.openssh.enable = true;

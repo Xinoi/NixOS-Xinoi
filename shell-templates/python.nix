@@ -6,7 +6,7 @@
     nixpkgs-python.url = "github:cachix/nixpkgs-python";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-python }: 
+  outputs = { self, nixpkgs, nixpkgs-python }:
     let
       system = "x86_64-linux";
 
@@ -24,7 +24,7 @@
         ];
         shellHook = ''
           python --version
-          exec zsh
+          exec fish
         '';
       };
     };
