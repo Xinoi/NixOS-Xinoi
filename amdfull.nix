@@ -22,6 +22,7 @@
     grub = {
       enable = true;
       efiSupport = true;
+      useOSProber = true;
       device = "nodev";
       enableCryptodisk = true;
     };
@@ -65,7 +66,7 @@
     initialHashedPassword = "$y$j9T$/WxfqHIXS2T5K1wdKK0HR.$SuEFBvpKGYf/BpXoWWYfErSNDIGnwXt9CwUmDn8Ejs/";
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" "wheel" "gamemode" ];
+    extraGroups = [ "networkmanager" "wheel" "gamemode" "plugdev" ];
   };
 
   # cleaning
@@ -195,6 +196,7 @@
     xf86_input_wacom
     wootility
     inputs.noctalia.packages.${system}.default
+    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   nixpkgs.config = {
