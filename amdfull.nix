@@ -147,7 +147,7 @@
     lutris
     mpv
     bottles
-    wineWowPackages.stagingFull
+    wineWowPackages.stable
     winetricks
     neofetch
     xorg.xev
