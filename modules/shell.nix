@@ -3,7 +3,6 @@
 
   environment.systemPackages = with pkgs; [
     tealdeer
-    linux-manual
     man-pages
     man-pages-posix
     wikiman

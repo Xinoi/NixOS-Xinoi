@@ -147,8 +147,7 @@
     lutris
     mpv
     bottles
-    wineWowPackages.unstableFull
-    wineWowPackages.waylandFull
+    wineWowPackages.stagingFull
     winetricks
     neofetch
     xorg.xev
@@ -205,12 +204,9 @@
   };
 
   documentation = {
-    enable = true;
-    dev.enable = true;
     man = {
       enable = true;
       generateCaches = false;
-      man-db.enable = true;
     };
   };
 
