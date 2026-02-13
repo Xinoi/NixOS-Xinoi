@@ -6,8 +6,11 @@
   ];
 
   services.vicinae = {
-        enable = true; # default: false
-        autoStart = true; # default: true
+        enable = true;
+        systemd = {
+          autoStart = true;
+        };
+
   };
 
   home.packages = with pkgs; [

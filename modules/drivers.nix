@@ -35,4 +35,13 @@
 
   programs.gamemode.enable=true;
 
+  hardware.openrazer.enable = true;
+  users.users.xinoi = { extraGroups = [ "openrazer" ]; };
+
+
+  environment.systemPackages = with pkgs; [
+      openrazer-daemon
+   ];
+
+
 }
