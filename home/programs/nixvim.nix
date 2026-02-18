@@ -89,7 +89,11 @@
       markview.enable = true;
       indent-blankline.enable = true;
       dressing.enable = true;
-      illuminate.enable = true; 
+      illuminate.enable = true;
+      molten = {
+	enable = true;
+	python3Dependencies = true;
+      };
     };
 
     plugins.lsp = {
