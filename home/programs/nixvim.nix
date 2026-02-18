@@ -90,7 +90,6 @@
       indent-blankline.enable = true;
       dressing.enable = true;
       illuminate.enable = true;
-      molten.enable = true;
     };
 
     plugins.lsp = {
