@@ -8,6 +8,7 @@
       ./disk-config.nix
       ./modules/displayManager.nix
       ./modules/hyprland.nix
+      ./modules/niri.nix
       ./modules/drivers.nix
       ./modules/virtualisation.nix
       ./modules/fonts.nix
@@ -147,7 +148,9 @@
     lutris
     mpv
     bottles
-    wineWowPackages.stable
+    wine
+    wine64
+    #wineWowPackages.stable
     winetricks
     neofetch
     xorg.xev
