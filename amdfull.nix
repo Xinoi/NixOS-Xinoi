@@ -153,7 +153,7 @@
     #wineWowPackages.stable
     winetricks
     neofetch
-    xorg.xev
+    xev
     (prismlauncher.override {
       jdks = [ jdk21_headless ];
     })

@@ -90,10 +90,7 @@
       indent-blankline.enable = true;
       dressing.enable = true;
       illuminate.enable = true;
-      molten = {
-	enable = true;
-	python3Dependencies = true;
-      };
+      molten.enable = true;
     };
 
     plugins.lsp = {
