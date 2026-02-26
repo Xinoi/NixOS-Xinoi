@@ -147,6 +147,7 @@
     ghostty
     lutris
     mpv
+    jellyfin-mpv-shim
     bottles
     wine
     wine64
