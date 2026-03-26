@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, pkgs,  ... }: {
   imports = [
     inputs.nixvim.homeModules.nixvim
   ];
@@ -91,6 +91,10 @@
       dressing.enable = true;
       illuminate.enable = true;
     };
+
+    extraPlugins = [
+      pkgs.vimPlugins.plenary-nvim
+    ];
 
     plugins.lsp = {
       enable = true;

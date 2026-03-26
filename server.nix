@@ -48,7 +48,6 @@
   };
 
   services.openssh.enable = true;
-  services.nginx.enable = true;
 
   environment.systemPackages = with pkgs; [
     coreutils
