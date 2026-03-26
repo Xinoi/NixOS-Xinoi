@@ -43,7 +43,10 @@
   users.users.xinoi = { extraGroups = [ "openrazer" "jackaudio" ]; };
 
   environment.systemPackages = with pkgs; [
-      openrazer-daemon
+    openrazer-daemon
+    libjack2 
+    jack2 
+    jack_capture
    ];
 
 

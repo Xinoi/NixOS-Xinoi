@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, inputs, lib, ... }:
 
 {
   imports =
@@ -20,16 +20,15 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   boot.loader = {
-    grub = {
-      enable = true;
-      efiSupport = true;
-      useOSProber = true;
-      device = "nodev";
-      enableCryptodisk = true;
+    efi.canTouchEfiVariables = true;
+    systemd-boot = {
+      enable = lib.mkForce false;
     };
   };
-
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
@@ -125,6 +124,7 @@
     libtool
     cmake
     unrar
+    sbctl
     kdePackages.ark
     networkmanager
     btop
@@ -153,7 +153,7 @@
     wine64
     #wineWowPackages.stable
     winetricks
-    neofetch
+    fastfetch
     xev
     (prismlauncher.override {
       jdks = [ jdk21_headless ];

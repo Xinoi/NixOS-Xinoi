@@ -23,9 +23,13 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v1.0.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, fenix, ... }@inputs:
+  outputs = { nixpkgs, home-manager, lanzaboote, fenix, ... }@inputs:
   let
     system = "x86_64-linux";
     specialArgs = {
@@ -45,13 +49,15 @@
     nixosConfigurations.amdfull = nixpkgs.lib.nixosSystem {
       inherit system specialArgs;
       modules = [
+	# ---
         ({ pkgs, ... }: {
           nixpkgs.overlays = overlays;
 
           environment.systemPackages = [ rustToolchain ];
         })
-
+	# ---
         ./amdfull.nix
+	# ---
 	home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
@@ -63,6 +69,8 @@
             home-manager.backupFileExtension = "bak";
             home-manager.extraSpecialArgs = specialArgs;
 	}
+	# --- 
+	lanzaboote.nixosModules.lanzaboote
       ];
     };
 
