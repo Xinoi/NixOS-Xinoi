@@ -1,15 +1,26 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
   imports = [
-    ./hardware-configuration.nix
+    ./hwconfigs/xiserver-hwconf.nix
+    ./disk-configs/xiserver-disk.nix
     ./modules/networking.nix
     ./modules/shell.nix
+    "${fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
   ];
 
   boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.configurationLimit = 3;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.optimise.automatic = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
+  };
+  nixpkgs.config.allowUnfree = true;
 
   networking = {
     hostName = "server";
@@ -26,7 +37,6 @@
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
-
   console.keyMap = "de";
 
   users.users.xinoi = {
@@ -36,18 +46,26 @@
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  nix.optimise.automatic = true;
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 30d";
+  services.openssh = {
+    enable = true;
+    settings = {
+    PermitRootLogin = false;
+    PasswordAuthentication = true;
+    };
   };
 
-  nixpkgs.config = {
-    allowUnfree = true;
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
   };
 
-  services.openssh.enable = true;
+  boot.tmp.useTmpfs = true;
+  boot.tmp.tmpfsSize = "2G";
+
+  services.journald.extraConfig = ''
+    Storage=volatile
+    RuntimeMaxUse=256M
+  '';
 
   environment.systemPackages = with pkgs; [
     coreutils
@@ -66,5 +84,9 @@
     gcc
     kitty
     p7zip
-  ];
+  ];  
+
+  services.timesyncd.enable = true;
+
+  system.stateVersion = "25.11";
 }

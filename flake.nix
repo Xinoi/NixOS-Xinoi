@@ -74,19 +74,6 @@
       ];
     };
 
-    nixosConfigurations.lite = nixpkgs.lib.nixosSystem {
-      inherit system specialArgs;
-      modules = [
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = overlays;
-
-          environment.systemPackages = [ rustToolchain ];
-        })
-
-        ./lite.nix
-      ];
-    };
-
     nixosConfigurations.server = nixpkgs.lib.nixosSystem {
       inherit system specialArgs;
       modules = [
