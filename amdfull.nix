@@ -3,8 +3,7 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      "${builtins.fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
+      ./hwconfigs/amdfull-hwconf.nix
       ./disk-configs/amdfull-disk.nix
       ./modules/displayManager.nix
       ./modules/hyprland.nix
@@ -14,6 +13,8 @@
       ./modules/fonts.nix
       ./modules/networking.nix
       ./modules/shell.nix
+      "${fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
+
     ];
 
   # Bootloader.
