@@ -2,7 +2,7 @@
 
 {
   imports = [
-    #./hwconfigs/xiserver-hwconf.nix
+    ./hwconfigs/xiserver-hwconf.nix
     ./disk-configs/xiserver-disk.nix
     ./modules/networking.nix
     ./modules/shell.nix
