@@ -13,8 +13,6 @@
       ./modules/fonts.nix
       ./modules/networking.nix
       ./modules/shell.nix
-      "${fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
-
     ];
 
   # Bootloader.

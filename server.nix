@@ -2,11 +2,10 @@
 
 {
   imports = [
-    ./hwconfigs/xiserver-hwconf.nix
+    #./hwconfigs/xiserver-hwconf.nix
     ./disk-configs/xiserver-disk.nix
     ./modules/networking.nix
     ./modules/shell.nix
-    "${fetchTarball "https://github.com/nix-community/disko/archive/master.tar.gz"}/module.nix"
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -49,7 +48,7 @@
   services.openssh = {
     enable = true;
     settings = {
-    PermitRootLogin = false;
+    PermitRootLogin = "no";
     PasswordAuthentication = true;
     };
   };
@@ -85,8 +84,6 @@
     kitty
     p7zip
   ];  
-
-  services.timesyncd.enable = true;
 
   system.stateVersion = "25.11";
 }

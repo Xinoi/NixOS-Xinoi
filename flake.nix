@@ -23,13 +23,17 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, lanzaboote, fenix, ... }@inputs:
+  outputs = { nixpkgs, home-manager, disko, lanzaboote, fenix, ... }@inputs:
   let
     system = "x86_64-linux";
     specialArgs = {
@@ -70,6 +74,7 @@
             home-manager.extraSpecialArgs = specialArgs;
 	}
 	# --- 
+	disko.nixosModules.disko
 	lanzaboote.nixosModules.lanzaboote
       ];
     };
@@ -82,6 +87,8 @@
         })
 
         ./server.nix
+	# --- 
+	disko.nixosModules.disko
       ];
     };
   };
