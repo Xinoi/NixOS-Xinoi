@@ -22,7 +22,7 @@
   nixpkgs.config.allowUnfree = true;
 
   networking = {
-    hostName = "server";
+    hostName = "xiserver";
     firewall.enable = true;
     firewall.allowedTCPPorts = [ 22 80 443 ];
     nameservers = [ "1.1.1.1" "8.8.8.8" ];

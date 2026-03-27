@@ -4,7 +4,7 @@
     disk = {
       usb = {
         type   = "disk";
-        device = "/dev/sda"; # e.g. /dev/sda — your USB stick
+        device = "/dev/sdc"; # e.g. /dev/sda — your USB stick
         content = {
           type = "gpt";
           partitions = {
