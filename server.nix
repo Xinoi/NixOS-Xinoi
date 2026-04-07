@@ -28,12 +28,6 @@
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
-  services.avahi = {
-    enable = true;
-    openFirewall = true;
-    nssmdns4 = true;
-  };
-
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "de_DE.UTF-8";
   console.keyMap = "de";
@@ -43,6 +37,12 @@
     isNormalUser = true;
     description = "Xinoi";
     extraGroups = [ "networkmanager" "wheel" ];
+  };
+
+  fileSystems."/mnt/data" = {
+    device = "dev/disk/by-uuid/b6b81f4f-78ba-4e47-8714-95e6101b7cc3";
+    fsType = "xfs";
+    options = [ "defaults" "nofail" ];
   };
 
   services.openssh = {
@@ -71,6 +71,7 @@
     vim
     curl
     openssl
+    bash
     lm_sensors
     neovim
     wget
@@ -84,6 +85,22 @@
     kitty
     p7zip
   ];  
+
+  systemd.services.autosleep = {
+  description = "Autosleep idle monitor";
+  wantedBy = [ "multi-user.target" ];
+  after = [ "network.target" ];
+
+  path = with pkgs; [ bash gawk iproute2 util-linux libvirt ];
+
+  serviceConfig = {
+    Type = "simple";
+    ExecStart = "${pkgs.bash}/bin/bash /home/xinoi/NixOS-Xinoi/scripts/autosleep.sh";
+    Restart = "on-failure";
+    RestartSec = "10s";
+    User= "root";
+  };
+};
 
   system.stateVersion = "25.11";
 }

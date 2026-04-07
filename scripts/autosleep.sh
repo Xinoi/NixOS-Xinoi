@@ -1,10 +1,11 @@
+#!/bin/bash
 # ─── CONFIG ───────────────────────────────────────────────────────────────────
 IDLE_THRESHOLD=3600
 CHECK_INTERVAL=60
 LOG_FILE="/var/log/autosleep.log"
 MAX_LOG_LINES=500
 
-NET_IFACES=""
+NET_IFACES="enp35s0"
 DISKS="sda"
 
 NET_THRESHOLD=600000
