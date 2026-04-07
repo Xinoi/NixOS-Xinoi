@@ -5,7 +5,6 @@
     ./hwconfigs/xiserver-hwconf.nix
     ./disk-configs/xiserver-disk.nix
     ./modules/networking.nix
-    ./modules/containers.nix
     ./modules/shell.nix
   ];
 
@@ -25,7 +24,7 @@
   networking = {
     hostName = "xiserver";
     firewall.enable = true;
-    firewall.allowedTCPPorts = [ 22 80 443 8000 ];
+    firewall.allowedTCPPorts = [ 22 80 443 8000 3900 ];
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
@@ -102,6 +101,13 @@
       User= "root";
     };
   };
+
+  # -----------------------------------
+  # container / services
+  # -----------------------------------
+
+  
+
 
   system.stateVersion = "25.11";
 }
