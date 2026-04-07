@@ -43,7 +43,7 @@
   fileSystems."/mnt/data" = {
     device = "dev/disk/by-uuid/b6b81f4f-78ba-4e47-8714-95e6101b7cc3";
     fsType = "xfs";
-    options = [ "defaults" "nofail" ];
+    options = [ "defaults" "nofail" "noatime" "nodiratime" ];
   };
 
   services.openssh = {
