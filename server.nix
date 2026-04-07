@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
     ./hwconfigs/xiserver-hwconf.nix
     ./disk-configs/xiserver-disk.nix
     ./modules/networking.nix
+    ./modules/containers.nix
     ./modules/shell.nix
   ];
 
@@ -24,7 +25,7 @@
   networking = {
     hostName = "xiserver";
     firewall.enable = true;
-    firewall.allowedTCPPorts = [ 22 80 443 ];
+    firewall.allowedTCPPorts = [ 22 80 443 8000 ];
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
@@ -87,20 +88,20 @@
   ];  
 
   systemd.services.autosleep = {
-  description = "Autosleep idle monitor";
-  wantedBy = [ "multi-user.target" ];
-  after = [ "network.target" ];
+    description = "Autosleep idle monitor";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
 
-  path = with pkgs; [ bash gawk iproute2 util-linux libvirt ];
+    path = with pkgs; [ bash gawk iproute2 util-linux libvirt ];
 
-  serviceConfig = {
-    Type = "simple";
-    ExecStart = "${pkgs.bash}/bin/bash /home/xinoi/NixOS-Xinoi/scripts/autosleep.sh";
-    Restart = "on-failure";
-    RestartSec = "10s";
-    User= "root";
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.bash}/bin/bash /home/xinoi/NixOS-Xinoi/scripts/autosleep.sh";
+      Restart = "on-failure";
+      RestartSec = "10s";
+      User= "root";
+    };
   };
-};
 
   system.stateVersion = "25.11";
 }
