@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
@@ -6,6 +6,8 @@
     ./disk-configs/xiserver-disk.nix
     ./modules/networking.nix
     ./modules/shell.nix
+    # --- input modules ---
+    inputs.sops-nix.nixosModules.sops
   ];
 
   boot.loader.systemd-boot.enable = true;
@@ -24,7 +26,11 @@
   networking = {
     hostName = "xiserver";
     firewall.enable = true;
-    firewall.allowedTCPPorts = [ 22 80 443 8000 3900 ];
+    interfaces.enp35s0.wakeOnLan.enable = true;
+    firewall = {
+      allowedTCPPorts = [ 22 80 443 8000 8082 3900 ];
+      allowedUDPPorts = [ 9 ];
+    };
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
@@ -36,13 +42,34 @@
     initialHashedPassword = "$y$j9T$MeC1orXD3qAZmZrFsTun4.$syuDij38XP3ESQy9OD4oGtD6xp5zPDgAwIWADvpX6V5";
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" ];
   };
 
   fileSystems."/mnt/data" = {
     device = "dev/disk/by-uuid/b6b81f4f-78ba-4e47-8714-95e6101b7cc3";
     fsType = "xfs";
     options = [ "defaults" "nofail" "noatime" "nodiratime" ];
+  };
+
+  sops = {
+    age.keyFile = "/var/lib/sops-nix/key.txt";
+    secrets."seafile-env" = {
+      sopsFile = ./secrets/seafile.env.sops;
+      format = "dotenv";
+      # Decrypted file will appear at this path at boot
+      path = "/run/secrets/seafile.env";
+      owner = "root";
+      mode = "0400";
+    };
+  };
+
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
   };
 
   services.openssh = {
@@ -69,6 +96,8 @@
   environment.systemPackages = with pkgs; [
     coreutils
     vim
+    podman
+    podman-compose
     curl
     openssl
     bash
@@ -105,8 +134,30 @@
   # -----------------------------------
   # container / services
   # -----------------------------------
-
   
+  # Seafile
+
+  systemd.services.seafile = {
+    description = "Seafile 13 (podman-compose)";
+    after = [ "network-online.target" "sops-nix.service" ];
+    wants = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      Type = "exec";
+      WorkingDirectory = "/etc/seafile";
+      ExecStart = "${pkgs.podman-compose}/bin/podman-compose --env-file /run/secrets/seafile.env -f seafile-server.yml up";
+      ExecStop  = "${pkgs.podman-compose}/bin/podman-compose --env-file /run/secrets/seafile.env -f seafile-server.yml down";
+      Restart   = "on-failure";
+      RestartSec = "10s";
+    };
+  };
+  
+  # Copy compose file from your repo into /etc/seafile at activation
+  environment.etc."seafile/seafile-server.yml" = {
+    source = ./container/seafile/seafile-server.yml;
+    mode = "0440";
+  }; 
 
 
   system.stateVersion = "25.11";
