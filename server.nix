@@ -1,5 +1,30 @@
 { pkgs, inputs, ... }:
 
+# --- Installation ---
+
+# 1. Generate Age Key (local)
+# sudo mkdir -p /var/lib/sops-nix
+# sudo age-keygen -o /var/lib/sops-nix/key.txt
+
+# 2. sops aktualisieren (local)
+# sops updatekeys secrets/seafile.env.sops
+# git add .sops.yaml secrets/seafile.env.sops
+# git commit -m "add new server key"
+# git push
+
+# 3. clone repo (on server)
+# git clone https://github.com/youruser/nixos-repo /etc/nixos
+
+# 4. NixOS bauen (on server)
+# sudo nixos-rebuild switch --flake .#yourhostname
+
+# Reinstall (alles wie oben aber Schritt 2 entfällt)
+# sudo mkdir -p /var/lib/sops-nix
+# Key von Backup oder altem Server rüberkopieren:
+# scp oldserver:/var/lib/sops-nix/key.txt /var/lib/sops-nix/key.txt
+
+# --------------------
+
 {
   imports = [
     ./hwconfigs/xiserver-hwconf.nix
@@ -56,9 +81,8 @@
     secrets."seafile-env" = {
       sopsFile = ./secrets/seafile.env.sops;
       format = "dotenv";
-      # Decrypted file will appear at this path at boot
       path = "/run/secrets/seafile.env";
-      owner = "root";
+      owner = "xinoi";
       mode = "0400";
     };
   };
@@ -143,11 +167,14 @@
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
 
+    path = [ pkgs.podman pkgs.podman-compose ];
+
     serviceConfig = {
       Type = "exec";
+      User = "xinoi";
       WorkingDirectory = "/etc/seafile";
-      ExecStart = "${pkgs.podman-compose}/bin/podman-compose --env-file /run/secrets/seafile.env -f seafile-server.yml up";
-      ExecStop  = "${pkgs.podman-compose}/bin/podman-compose --env-file /run/secrets/seafile.env -f seafile-server.yml down";
+      ExecStart = "${pkgs.podman-compose}/bin/podman-compose --env-file /etc/seafile/seafile-public.env --env-file /run/secrets/seafile.env -f seafile-server.yml up";
+      ExecStop  = "${pkgs.podman-compose}/bin/podman-compose --env-file /etc/seafile/seafile-public.env --env-file /run/secrets/seafile.env -f seafile-server.yml down";
       Restart   = "on-failure";
       RestartSec = "10s";
     };
@@ -157,7 +184,13 @@
   environment.etc."seafile/seafile-server.yml" = {
     source = ./container/seafile/seafile-server.yml;
     mode = "0440";
+    user = "xinoi";
   }; 
+  environment.etc."seafile/seafile-public.env" = {
+    source = ./container/seafile/seafile-public.env;
+    mode = "0444";
+    user = "xinoi";
+  };
 
 
   system.stateVersion = "25.11";
