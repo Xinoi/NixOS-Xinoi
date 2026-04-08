@@ -173,8 +173,12 @@
       Type = "exec";
       User = "xinoi";
       WorkingDirectory = "/etc/seafile";
-      ExecStart = "${pkgs.podman-compose}/bin/podman-compose --env-file /etc/seafile/seafile-public.env --env-file /run/secrets/seafile.env -f seafile-server.yml up";
-      ExecStop  = "${pkgs.podman-compose}/bin/podman-compose --env-file /etc/seafile/seafile-public.env --env-file /run/secrets/seafile.env -f seafile-server.yml down";
+      EnvironmentFile = [ 
+        "/etc/seafile/seafile-public.env" 
+        "/run/secrets/seafile.env"
+      ];
+      ExecStart = "${pkgs.podman-compose}/bin/podman-compose -f seafile-server.yml up";
+      ExecStop  = "${pkgs.podman-compose}/bin/podman-compose -f seafile-server.yml down";
       Restart   = "on-failure";
       RestartSec = "10s";
     };
