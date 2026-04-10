@@ -1,17 +1,26 @@
 {
-  description = "A simple NixOS flake";
+  description = "NixOS flake for my systems";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.url = "github:hyprwm/Hyprland";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland= {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     zen-browser = {
       url = "github:youwen5/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim = {
       url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nvim-xinoi = {
+      url = "github:Xinoi/nvim-xinoi";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia = {
@@ -37,34 +46,22 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, disko, lanzaboote, fenix, ... }@inputs:
+  outputs = { nixpkgs, home-manager, disko, lanzaboote, nvim-xinoi, ... }@inputs:
   let
-    system = "x86_64-linux";
     specialArgs = {
       inherit inputs;
     };
-    overlays = [
-      fenix.overlays.default
-    ];
-    rustToolchain = (fenix.packages.${system}.default.withComponents [
-      "cargo"
-      "clippy"
-      "rust-std"
-      "rustc"
-      "rustfmt"
-    ]);
   in {
     nixosConfigurations.amdfull = nixpkgs.lib.nixosSystem {
-      inherit system specialArgs;
+      system = "x86_64-linux";
+      inherit specialArgs;
       modules = [
 	# ---
-        ({ pkgs, ... }: {
-          nixpkgs.overlays = overlays;
-
-          environment.systemPackages = [ rustToolchain ];
-        })
-	# ---
         ./amdfull.nix
+	# ---
+	{nixpkgs.overlays = [
+	  nvim-xinoi.overlays.default
+	];}
 	# ---
 	home-manager.nixosModules.home-manager {
             home-manager.useGlobalPkgs = true;
@@ -81,15 +78,13 @@
 	disko.nixosModules.disko
 	lanzaboote.nixosModules.lanzaboote
       ];
+
     };
 
     nixosConfigurations.server = nixpkgs.lib.nixosSystem {
-      inherit system specialArgs;
+      system = "x86_64-linux";
+      inherit specialArgs;
       modules = [
-        ({ pkgs, ... }: {
-          environment.systemPackages = [ ];
-        })
-
         ./server.nix
 	# --- 
 	disko.nixosModules.disko
