@@ -126,6 +126,7 @@
     networkmanager
     btop
     spotify
+    caligula
     betterlockscreen
     (discord.override {
       withOpenASAR = true;
@@ -191,6 +192,7 @@
     pandoc
     ffmpeg
     most
+    keepassxc
     seafile-client
     chromium
     xf86_input_wacom

@@ -16,6 +16,9 @@
 
   # Sound
   services = {
+    mpd = {
+      enable = true;
+    };
     pulseaudio.enable = false;
     pipewire = {
       enable = true;
