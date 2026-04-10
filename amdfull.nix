@@ -115,7 +115,7 @@
   environment.systemPackages = with pkgs; [
     coreutils
     vim
-    neovim
+    nvim-pkg
     wget
     unzip
     fastfetch
