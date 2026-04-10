@@ -17,7 +17,6 @@
 
   # Bootloader.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
   boot.loader = {
     efi.canTouchEfiVariables = true;
     systemd-boot = {
@@ -31,8 +30,7 @@
 
   boot.initrd.kernelModules = [ "amdgpu" ];
 
-  networking.hostName = "amdfull"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "amdfull";
 
   services.resolved.enable = false;
 

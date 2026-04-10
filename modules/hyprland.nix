@@ -11,7 +11,7 @@
     pywal
     hyprpicker
     libnotify
-    swww
+    awww
     pulseaudio
     pywalfox-native
     wl-gammarelay-rs
