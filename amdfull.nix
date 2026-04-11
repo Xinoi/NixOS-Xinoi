@@ -2,10 +2,10 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
       ./hwconfigs/amdfull-hwconf.nix
       ./disk-configs/amdfull-disk.nix
-      ./modules/displayManager.nix
+      ./modules/greetd.nix
       ./modules/hyprland.nix
       ./modules/niri.nix
       ./modules/drivers.nix
@@ -143,6 +143,7 @@
     lazygit
     kitty
     ghostty
+    xwayland-satellite
     lutris
     mpv
     jellyfin-mpv-shim

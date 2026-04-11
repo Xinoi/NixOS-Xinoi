@@ -4,26 +4,21 @@
 
   services.greetd = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.greetd.regreet}/bin/regreet";
-        user = "greeter";
-      };
-    };
   };
 
   programs.regreet = {
     enable = true;
+    theme = {
+      name = "rose-pine-moon";
+      package = pkgs.rose-pine-gtk-theme;
+    };
     settings = {
       background = {
-        path = "../assets/blick.jpg";
+        path = "/home/xinoi/NixOS-Xinoi/assets/blick.jpg";
         fit = "Cover";
       };
-      GTK = {
-        cursor_theme_name = "Bibata-Modern-Classic";
-        font_name = "JetBrainsMono 12";
-      };
     };
+    cageArgs = [ "-m" "last" ];
   };
 
 }
