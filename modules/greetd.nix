@@ -17,8 +17,11 @@
         path = "/home/xinoi/NixOS-Xinoi/assets/blick.jpg";
         fit = "Cover";
       };
+      GTK = {
+        theme_name = "rose-pine-moon";
+      };
     };
-    cageArgs = [ "-m" "last" ];
+    cageArgs = [ "-m" "extend" ];
   };
 
 }

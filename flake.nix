@@ -47,38 +47,37 @@
   };
 
   outputs = { nixpkgs, home-manager, disko, lanzaboote, nvim-xinoi, ... }@inputs:
-  let
-    specialArgs = {
-      inherit inputs;
-    };
-  in {
+    let
+      specialArgs = {
+        inherit inputs;
+      };
+    in {
     nixosConfigurations.amdfull = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       inherit specialArgs;
       modules = [
-	# ---
+        # -------------
         ./amdfull.nix
-	# ---
-	{nixpkgs.overlays = [
-	  nvim-xinoi.overlays.default
-	];}
-	# ---
-	home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.xinoi = {
-	      imports = [
-	        ./home/home.nix
-	      ];
-	    };
-            home-manager.backupFileExtension = "bak";
-            home-manager.extraSpecialArgs = specialArgs;
-	}
-	# --- 
-	disko.nixosModules.disko
-	lanzaboote.nixosModules.lanzaboote
+        # -------------
+        {nixpkgs.overlays = [
+          nvim-xinoi.overlays.default
+        ];}
+        # ------------
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.xinoi = {
+            imports = [
+              ./home/home.nix
+            ];
+          };
+          home-manager.backupFileExtension = "bak";
+          home-manager.extraSpecialArgs = specialArgs;
+        }
+        # ----------
+        disko.nixosModules.disko
+        lanzaboote.nixosModules.lanzaboote
       ];
-
     };
 
     nixosConfigurations.server = nixpkgs.lib.nixosSystem {
@@ -86,10 +85,11 @@
       inherit specialArgs;
       modules = [
         ./server.nix
-	# --- 
-	disko.nixosModules.disko
+        # --- 
+        disko.nixosModules.disko
       ];
     };
   };
+
 }
 
