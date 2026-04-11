@@ -121,6 +121,7 @@
     libtool
     cmake
     unrar
+    jq
     sbctl
     kdePackages.ark
     networkmanager
@@ -159,7 +160,6 @@
     })
     ripgrep
     rsync
-    steam
     sway
     dracula-theme
     dracula-icon-theme
