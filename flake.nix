@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    elephant.url = "github:abenz1267/elephant";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -24,10 +23,6 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    walker = {
-      url = "github:abenz1267/walker";
-      inputs.elephant.follows = "elephant";
     };
     disko = {
       url = "github:nix-community/disko";
