@@ -10,5 +10,6 @@
     nwg-displays
     rofi
     rofi-calc
+    swayidle
   ];
 }

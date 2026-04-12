@@ -15,6 +15,5 @@
     pulseaudio
     pywalfox-native
     wl-gammarelay-rs
-    hypridle
   ];
 }
