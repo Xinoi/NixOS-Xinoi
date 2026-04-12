@@ -2,7 +2,6 @@
 
   imports = [
     ./noctalia.nix
-    inputs.walker.homeManagerModules.default
   ];
 
   home.packages = with pkgs; [
@@ -10,5 +9,6 @@
     pywalfox-native
     nwg-displays
     rofi
+    rofi-calc
   ];
 }
