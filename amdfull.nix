@@ -191,7 +191,7 @@
     most
     keepassxc
     seafile-client
-    chromium
+    (chromium.override { enableWideVine = true; })
     xf86_input_wacom
     wootility
     inputs.noctalia.packages.${system}.default
