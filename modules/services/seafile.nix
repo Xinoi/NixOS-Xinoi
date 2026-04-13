@@ -26,12 +26,12 @@
   
   # Copy compose file from your repo into /etc/seafile at activation
   environment.etc."seafile/seafile-server.yml" = {
-    source = ./container/seafile/seafile-server.yml;
+    source = ../../container/seafile/seafile-server.yml;
     mode = "0440";
     user = "xinoi";
   }; 
   environment.etc."seafile/seafile-public.env" = {
-    source = ./container/seafile/seafile-public.env;
+    source = ../../container/seafile/seafile-public.env;
     mode = "0444";
     user = "xinoi";
   };

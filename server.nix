@@ -32,7 +32,7 @@
     ./modules/networking.nix
     ./modules/shell.nix
     ./modules/services/seafile.nix
-    ./modules/services/seafile.nix
+    ./modules/services/jellyfin.nix
     # --- input modules ---
     inputs.sops-nix.nixosModules.sops
   ];
