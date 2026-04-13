@@ -49,6 +49,11 @@
   };
   nixpkgs.config.allowUnfree = true;
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   networking = {
     hostName = "xiserver";
     firewall.enable = true;
@@ -68,7 +73,7 @@
     initialHashedPassword = "$y$j9T$MeC1orXD3qAZmZrFsTun4.$syuDij38XP3ESQy9OD4oGtD6xp5zPDgAwIWADvpX6V5";
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" "video" "render" ];
   };
 
   fileSystems."/mnt/data" = {
@@ -154,6 +159,21 @@
       RestartSec = "10s";
       User= "root";
     };
+  };
+
+  # -----------------------------------
+  # container / services
+  # -----------------------------------
+
+  # Jellyfin
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+    user = "xinoi";
+    group = "users";
+    cacheDir = "/mnt/data/jellyfin/cache";
+    hardwareAcceleration.enable = true;
+    hardwareAcceleration.device = "/dev/dri/renderD128";
   };
 
   system.stateVersion = "25.11";
