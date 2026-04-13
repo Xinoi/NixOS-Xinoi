@@ -48,6 +48,11 @@
   };
   nixpkgs.config.allowUnfree = true;
 
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
   networking = {
     hostName = "xiserver";
     firewall.enable = true;
@@ -67,7 +72,7 @@
     initialHashedPassword = "$y$j9T$MeC1orXD3qAZmZrFsTun4.$syuDij38XP3ESQy9OD4oGtD6xp5zPDgAwIWADvpX6V5";
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" "video" "render" ];
   };
 
   fileSystems."/mnt/data" = {
@@ -163,8 +168,8 @@
 
   systemd.services.seafile = {
     description = "Seafile 13 (podman-compose)";
-    after = [ "network-online.target" "sops-nix.service" ];
-    wants = [ "network-online.target" ];
+    after = [ "network-online.target" "sops-nix.service" "podman.service" ];
+    wants = [ "network-online.target" "podman.service" ];
     wantedBy = [ "multi-user.target" ];
 
     path = [ pkgs.podman pkgs.podman-compose ];
@@ -177,8 +182,7 @@
         "/etc/seafile/seafile-public.env" 
         "/run/secrets/seafile.env"
       ];
-      ExecStart = "${pkgs.podman-compose}/bin/podman-compose -f seafile-server.yml up";
-      ExecStop  = "${pkgs.podman-compose}/bin/podman-compose -f seafile-server.yml down";
+      ExecStart = "${pkgs.podman-compose}/bin/podman-compose -f seafile-server.yml up -d";
       Restart   = "on-failure";
       RestartSec = "10s";
     };
@@ -194,6 +198,17 @@
     source = ./container/seafile/seafile-public.env;
     mode = "0444";
     user = "xinoi";
+  };
+
+  # Jellyfin
+  services.jellyfin = {
+    enable = true;
+    openFirewall = true;
+    user = "xinoi";
+    group = "users";
+    cacheDir = "/mnt/data/jellyfin/cache";
+    hardwareAcceleration.enable = true;
+    hardwareAcceleration.device = "/dev/dri/renderD128";
   };
 
 
