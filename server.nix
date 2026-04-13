@@ -32,6 +32,7 @@
     ./modules/networking.nix
     ./modules/shell.nix
     ./modules/services/seafile.nix
+    ./modules/services/seafile.nix
     # --- input modules ---
     inputs.sops-nix.nixosModules.sops
   ];
@@ -159,21 +160,6 @@
       RestartSec = "10s";
       User= "root";
     };
-  };
-
-  # -----------------------------------
-  # container / services
-  # -----------------------------------
-
-  # Jellyfin
-  services.jellyfin = {
-    enable = true;
-    openFirewall = true;
-    user = "xinoi";
-    group = "users";
-    cacheDir = "/mnt/data/jellyfin/cache";
-    hardwareAcceleration.enable = true;
-    hardwareAcceleration.device = "/dev/dri/renderD128";
   };
 
   system.stateVersion = "25.11";
