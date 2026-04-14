@@ -1,6 +1,6 @@
 #!/bin/bash
 # ─── CONFIG ───────────────────────────────────────────────────────────────────
-IDLE_THRESHOLD=3600
+IDLE_THRESHOLD=2000
 CHECK_INTERVAL=60
 LOG_FILE="/var/log/autosleep.log"
 MAX_LOG_LINES=500

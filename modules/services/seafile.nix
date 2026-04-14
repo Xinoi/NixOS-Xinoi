@@ -2,12 +2,12 @@
 { pkgs, ... }:
 {
   systemd.services.seafile = {
-    description = "Seafile 13 (podman-compose)";
-    after = [ "network-online.target" "sops-nix.service" ];
+    description = "Seafile 13";
+    after = [ "network-online.target" "sops-nix.service" "podman.service" ];
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
 
-    path = [ pkgs.podman pkgs.podman-compose ];
+    path = [ pkgs.podman pkgs.podman-compose pkgs.shadow ];
 
     serviceConfig = {
       Type = "exec";
@@ -17,8 +17,8 @@
         "/etc/seafile/seafile-public.env" 
         "/run/secrets/seafile.env"
       ];
-      ExecStart = "${pkgs.podman-compose}/bin/podman-compose -f seafile-server.yml up";
-      ExecStop  = "${pkgs.podman-compose}/bin/podman-compose -f seafile-server.yml down";
+      ExecStart = "${pkgs.podman}/bin/podman compose -f seafile-server.yml up";
+      ExecStop  = "${pkgs.podman}/bin/podman compose -f seafile-server.yml down";
       Restart   = "on-failure";
       RestartSec = "10s";
     };

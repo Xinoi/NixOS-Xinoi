@@ -40,6 +40,9 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.configurationLimit = 3;
+  boot.kernelParams = [
+    "pcie_aspm=off"
+  ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.optimise.automatic = true;
@@ -74,7 +77,9 @@
     initialHashedPassword = "$y$j9T$MeC1orXD3qAZmZrFsTun4.$syuDij38XP3ESQy9OD4oGtD6xp5zPDgAwIWADvpX6V5";
     isNormalUser = true;
     description = "Xinoi";
-    extraGroups = [ "networkmanager" "wheel" "podman" "video" "render" ];
+    subUidRanges = [{ startUid = 100000; count = 65536; }];
+    subGidRanges = [{ startGid = 100000; count = 65536; }];
+    extraGroups = [ "networkmanager" "wheel" "podman" ];
   };
 
   fileSystems."/mnt/data" = {
@@ -92,13 +97,23 @@
       owner = "xinoi";
       mode = "0400";
     };
+    secrets.paperless_admin_pass = {
+      sopsFile = ./secrets/paperless.yaml.sops;
+      key = "admin_password";
+      owner = "xinoi";
+    };
+    secrets.paperless_env = {
+      sopsFile = ./secrets/paperless.yaml.sops;
+      key = "secret_key";
+      owner = "xinoi";
+    };
   };
 
   virtualisation = {
     containers.enable = true;
     podman = {
       enable = true;
-      dockerCompat = true;
+      dockerSocket.enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };
   };
@@ -117,7 +132,7 @@
   };
 
   boot.tmp.useTmpfs = true;
-  boot.tmp.tmpfsSize = "2G";
+  boot.tmp.tmpfsSize = "20%";
 
   services.journald.extraConfig = ''
     Storage=volatile
@@ -132,6 +147,7 @@
     curl
     openssl
     bash
+    shadow
     lm_sensors
     neovim
     wget
@@ -141,7 +157,6 @@
     gh
     ranger
     ripgrep
-    gcc
     kitty
     p7zip
   ];  
