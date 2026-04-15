@@ -139,6 +139,8 @@
     jdk
     lazygit
     kitty
+    qutebrowser
+    python313Packages.pynacl
     ghostty
     xwayland-satellite
     lutris
