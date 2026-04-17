@@ -77,6 +77,11 @@
   # run binaries
   programs.nix-ld.enable = true;
 
+  programs.gnupg.agent = {
+    enable = true;
+    pinentryPackage = pkgs.pinentry-rofi;
+  };
+
   # thunar
   programs.thunar.enable = true;
   programs.xfconf.enable = true;
