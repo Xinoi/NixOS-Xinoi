@@ -33,6 +33,7 @@
     ./modules/shell.nix
     ./modules/services/seafile.nix
     ./modules/services/jellyfin.nix
+    ./modules/services/paperless.nix
     # --- input modules ---
     inputs.sops-nix.nixosModules.sops
   ];
@@ -62,10 +63,6 @@
     hostName = "xiserver";
     firewall.enable = true;
     interfaces.enp35s0.wakeOnLan.enable = true;
-    firewall = {
-      allowedTCPPorts = [ 22 80 443 8000 8082 3900 ];
-      allowedUDPPorts = [ 9 ];
-    };
     nameservers = [ "1.1.1.1" "8.8.8.8" ];
   };
 
@@ -96,16 +93,6 @@
       path = "/run/secrets/seafile.env";
       owner = "xinoi";
       mode = "0400";
-    };
-    secrets.paperless_admin_pass = {
-      sopsFile = ./secrets/paperless.yaml.sops;
-      key = "admin_password";
-      owner = "xinoi";
-    };
-    secrets.paperless_env = {
-      sopsFile = ./secrets/paperless.yaml.sops;
-      key = "secret_key";
-      owner = "xinoi";
     };
   };
 

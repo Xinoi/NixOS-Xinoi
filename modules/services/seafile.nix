@@ -7,7 +7,7 @@
     wants = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
 
-    path = [ pkgs.podman pkgs.podman-compose pkgs.shadow ];
+    path = [ pkgs.podman pkgs.podman-compose ];
 
     serviceConfig = {
       Type = "exec";
