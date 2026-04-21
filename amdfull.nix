@@ -202,7 +202,6 @@
     xf86_input_wacom
     wootility
     inputs.noctalia.packages.${system}.default
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   nixpkgs.config = {
