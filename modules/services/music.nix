@@ -1,3 +1,5 @@
+{ config, ...}:
+
 {
 
   services.navidrome = {
@@ -12,7 +14,7 @@
   services.slskd = {
     enable = true;
     user = "xinoi";
-    environmentFile = "/run/secrets/slskd.env";
+    environmentFile = config.sops.secrets."slskd-env".path;
     settings = {
       directories.downloads = "/mnt/data/slskd/downloads";
       directories.incomplete = "/mnt/data/slskd/incomplete";
