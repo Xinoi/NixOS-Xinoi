@@ -9,4 +9,13 @@
     };
   };
 
+  services.slskd = {
+    enable = true;
+    user = "xinoi";
+    settings = {
+      directories.downloads = "/mnt/data/slskd/downloads";
+      directories.incomplete = "/mnt/data/slskd/incomplete";
+    };
+  };
+
 }
