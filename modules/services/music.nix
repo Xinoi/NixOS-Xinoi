@@ -12,6 +12,7 @@
   services.slskd = {
     enable = true;
     user = "xinoi";
+    environmentFile = "/run/secrets/slskd.env";
     settings = {
       directories.downloads = "/mnt/data/slskd/downloads";
       directories.incomplete = "/mnt/data/slskd/incomplete";

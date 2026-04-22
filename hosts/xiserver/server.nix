@@ -34,7 +34,7 @@
     ./../../modules/services/seafile.nix
     ./../../modules/services/jellyfin.nix
     ./../../modules/services/paperless.nix
-    ./../../modules/services/navidrome.nix
+    ./../../modules/services/music.nix
     # --- input modules ---
     inputs.sops-nix.nixosModules.sops
   ];
@@ -92,6 +92,13 @@
       sopsFile = ./../../secrets/seafile.env.sops;
       format = "dotenv";
       path = "/run/secrets/seafile.env";
+      owner = "xinoi";
+      mode = "0400";
+    };
+    secrets."slskd-env" = {
+      sopsFile = ./../../secrets/slskd.env.sops;
+      format = "dotenv";
+      path = "/run/secrets/slskd.env";
       owner = "xinoi";
       mode = "0400";
     };
