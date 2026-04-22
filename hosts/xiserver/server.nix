@@ -27,13 +27,13 @@
 
 {
   imports = [
-    ./hwconfigs/xiserver-hwconf.nix
-    ./disk-configs/xiserver-disk.nix
-    ./modules/networking.nix
-    ./modules/shell.nix
-    ./modules/services/seafile.nix
-    ./modules/services/jellyfin.nix
-    ./modules/services/paperless.nix
+    ./hardware-configuration.nix
+    ./xiserver-disk.nix
+    ./../../modules/networking.nix
+    ./../../modules/shell.nix
+    ./../../modules/services/seafile.nix
+    ./../../modules/services/jellyfin.nix
+    ./../../modules/services/paperless.nix
     # --- input modules ---
     inputs.sops-nix.nixosModules.sops
   ];

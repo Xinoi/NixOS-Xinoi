@@ -3,16 +3,16 @@
 {
   imports =
     [
-      ./hwconfigs/amdfull-hwconf.nix
-      ./disk-configs/amdfull-disk.nix
-      ./modules/greetd.nix
-      ./modules/hyprland.nix
-      ./modules/niri.nix
-      ./modules/drivers.nix
-      ./modules/virtualisation.nix
-      ./modules/fonts.nix
-      ./modules/networking.nix
-      ./modules/shell.nix
+      ./hardware-configuration.nix
+      ./amdfull-disk.nix
+      ./../../modules/greetd.nix
+      ./../../modules/hyprland.nix
+      ./../../modules/niri.nix
+      ./../../modules/drivers.nix
+      ./../../modules/virtualisation.nix
+      ./../../modules/fonts.nix
+      ./../../modules/networking.nix
+      ./../../modules/shell.nix
     ];
 
   # Bootloader.

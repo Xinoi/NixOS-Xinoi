@@ -45,7 +45,7 @@
       inherit specialArgs;
       modules = [
         # -------------
-        ./amdfull.nix
+        ./hosts/home-pc/amdfull.nix
         # -------------
         {nixpkgs.overlays = [
           nvim-xinoi.overlays.default
@@ -72,7 +72,7 @@
       system = "x86_64-linux";
       inherit specialArgs;
       modules = [
-        ./server.nix
+        ./hosts/xiserver/server.nix
         # --- 
         disko.nixosModules.disko
       ];
