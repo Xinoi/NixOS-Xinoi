@@ -34,6 +34,7 @@
     ./../../modules/services/seafile.nix
     ./../../modules/services/jellyfin.nix
     ./../../modules/services/paperless.nix
+    ./../../modules/services/navidrome.nix
     # --- input modules ---
     inputs.sops-nix.nixosModules.sops
   ];
@@ -88,7 +89,7 @@
   sops = {
     age.keyFile = "/var/lib/sops-nix/key.txt";
     secrets."seafile-env" = {
-      sopsFile = ./secrets/seafile.env.sops;
+      sopsFile = ./../../secrets/seafile.env.sops;
       format = "dotenv";
       path = "/run/secrets/seafile.env";
       owner = "xinoi";
