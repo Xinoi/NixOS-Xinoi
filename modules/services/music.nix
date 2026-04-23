@@ -1,6 +1,11 @@
 { config, pkgs, ...}:
 
 {
+
+  environment.systemPackages = [
+    pkgs.beets
+  ];
+
   services.navidrome = {
     enable = true;
     user = "xinoi";
@@ -25,7 +30,7 @@
     serviceConfig = {
       Type = "simple";
       User = "xinoi";
-      WorkingDirectory = "/var/lib/soulbeet";
+      WorkingDirectory = "/var/lib/music";
       ExecStart = "${pkgs.podman}/bin/podman compose -f slskd-server.yml up";
       ExecStop = "${pkgs.podman}/bin/podman compose -f slskd-server.yml down";
       Restart = "on-failure";
