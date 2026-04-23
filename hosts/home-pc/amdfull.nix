@@ -28,6 +28,30 @@
     pkiBundle = "/var/lib/sbctl";
   };
 
+  boot = {
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    initrd.systemd.enable = true;
+
+    kernelParams = [
+      "quiet"
+      "splash"
+      "boot.shell_on_fail"
+      "udev.log_priority=3"
+      "rd.systemd.show_status=auto"
+    ];
+
+    plymouth = {
+      enable = true;
+      theme = "red_loader";
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "red_loader" ];
+        })
+      ];
+    };
+  };
+
   boot.initrd.kernelModules = [ "amdgpu" ];
 
   networking.hostName = "amdfull";
