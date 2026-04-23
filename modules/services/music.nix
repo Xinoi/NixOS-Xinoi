@@ -1,13 +1,13 @@
-{ config, ...}:
+{ config, pkgs, ...}:
 
 {
-
   services.navidrome = {
     enable = true;
     user = "xinoi";
     settings = {
       Address = "0.0.0.0";
       MusicFolder = "/mnt/data/music";
+      BaseUrl = "http://xiserver.slugcat.net:4533";
     };
   };
 
@@ -26,17 +26,16 @@
     serviceConfig = {
       Type = "simple";
       User = "xinoi";
-      WorkingDirectory = "/etc/soulbeet";
+      WorkingDirectory = "/var/lib/soulbeet";
       ExecStart = "${pkgs.podman}/bin/podman compose -f soulbeet-server.yml up";
       ExecStop = "${pkgs.podman}/bin/podman compose -f soulbeet-server.yml down";
-      Restart = "always";
+      Restart = "on-failure";
     };
   };
 
-  environment.etc."soulbeet/soulbeet-server.yml" = {
-    source = ../../container/soulbeet/soulbeet-server.yml;
-    mode = "0440";
-    user = "xinoi";
-  };
+  systemd.tmpfiles.rules = [
+    "d /var/lib/soulbeet 0750 xinoi users -"
+    "L+ /var/lib/soulbeet/soulbeet-server.yml - - - - ${../../container/soulbeet/soulbeet-server.yml}"
+  ];
 
 }

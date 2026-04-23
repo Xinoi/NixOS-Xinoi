@@ -1,16 +1,14 @@
 services:
   soulbeet:
     image: docker.io/docccccc/soulbeet:latest
+    network_mode: host
     restart: unless-stopped
     ports:
       - 9765:9765
     environment:
       - DATABASE_URL=sqlite:/data/soulbeet.db
       - DOWNLOAD_PATH=/downloads
-      - SECRET_KEY=change-me-in-production
-      - NAVIDROME_URL=http://navidrome:4533
-      # Optional
-      - BEETS_CONFIG=/config/config.yaml
+      - NAVIDROME_URL=http://xiserver.slugcat.net:4533
     volumes:
       - ./data:/data
       - /mnt/data/slskd/downloads:/downloads
@@ -20,10 +18,11 @@ services:
 
   slskd:
     image: slskd/slskd
+    network_mode: host
     environment:
       - SLSKD_REMOTE_CONFIGURATION=true
     volumes:
-      - ./slskd-config:/app/slskd.conf.d
+      - ./slskd-data:/app
       - /mnt/data/slskd/downloads:/app/downloads
     ports:
       - "5030:5030"
