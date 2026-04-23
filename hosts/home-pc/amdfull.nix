@@ -5,7 +5,7 @@
     [
       ./hardware-configuration.nix
       ./amdfull-disk.nix
-      ./../../modules/greetd.nix
+      ./../../modules/displayManager.nix
       ./../../modules/hyprland.nix
       ./../../modules/niri.nix
       ./../../modules/drivers.nix
