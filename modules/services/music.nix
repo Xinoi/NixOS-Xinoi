@@ -11,12 +11,11 @@
     };
   };
 
-  systemd.services.soulbeet = {
-    description = "SoulBeet - Manage/Download music with beet and slskd";
+  systemd.services.slskd = {
+    description = "Music Downloader";
     after = [
       "network-online.target"
       "podman.service"
-      "navidrome.service"
     ];
     requires = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
@@ -27,15 +26,15 @@
       Type = "simple";
       User = "xinoi";
       WorkingDirectory = "/var/lib/soulbeet";
-      ExecStart = "${pkgs.podman}/bin/podman compose -f soulbeet-server.yml up";
-      ExecStop = "${pkgs.podman}/bin/podman compose -f soulbeet-server.yml down";
+      ExecStart = "${pkgs.podman}/bin/podman compose -f slskd-server.yml up";
+      ExecStop = "${pkgs.podman}/bin/podman compose -f slskd-server.yml down";
       Restart = "on-failure";
     };
   };
 
   systemd.tmpfiles.rules = [
-    "d /var/lib/soulbeet 0750 xinoi users -"
-    "L+ /var/lib/soulbeet/soulbeet-server.yml - - - - ${../../container/soulbeet/soulbeet-server.yml}"
+    "d /var/lib/music 0750 xinoi users -"
+    "L+ /var/lib/music/slskd-server.yml - - - - ${../../container/music/slskd-server.yml}"
   ];
 
 }
