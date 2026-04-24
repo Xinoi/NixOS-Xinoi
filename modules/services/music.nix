@@ -4,6 +4,7 @@
 
   environment.systemPackages = [
     pkgs.beets
+    pkgs.inotify-tools
   ];
 
   services.navidrome = {
@@ -34,6 +35,22 @@
       ExecStart = "${pkgs.podman}/bin/podman compose -f slskd-server.yml up";
       ExecStop = "${pkgs.podman}/bin/podman compose -f slskd-server.yml down";
       Restart = "on-failure";
+    };
+  };
+ 
+  systemd.services.slskd-watcher = {
+    description = "slskd download Watcher with beets import";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+
+    path = with pkgs; [ beets inotify-tools ];
+
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.bash}/bin/bash /home/xinoi/NixOS-Xinoi/scripts/slskd-watcher.sh";
+      Restart = "on-failure";
+      RestartSec = "10s";
+      User= "xinoi";
     };
   };
 
