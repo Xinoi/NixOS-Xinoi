@@ -6,6 +6,7 @@ services:
     volumes:
       - ./slskd-data:/app
       - /mnt/data/slskd/downloads:/app/downloads
+      - /mnt/data/music:/music
     ports:
       - "5030:5030"
       - "50400:50300"

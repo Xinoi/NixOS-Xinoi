@@ -23,6 +23,8 @@
 # Key von Backup oder altem Server rüberkopieren:
 # scp oldserver:/var/lib/sops-nix/key.txt /var/lib/sops-nix/key.txt
 
+# 5. copy configs in home/programs/configs
+
 # --------------------
 
 {
