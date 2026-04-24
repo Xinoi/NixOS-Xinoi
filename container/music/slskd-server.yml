@@ -4,6 +4,7 @@ services:
     environment:
       - SLSKD_REMOTE_CONFIGURATION=true
     volumes:
+      - /mnt/data/slskd/data/slskd.yml:/app/slskd.yml
       - ./slskd-data:/app
       - /mnt/data/slskd/downloads:/app/downloads
       - /mnt/data/music:/music
