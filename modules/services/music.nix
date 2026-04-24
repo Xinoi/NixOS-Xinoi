@@ -7,6 +7,11 @@
     pkgs.inotify-tools
   ];
 
+  system.activationScripts.beetsConfig = ''
+    mkdir -p /home/xinoi/.config/beets
+    ln -sf /home/xinoi/NixOS-Xinoi/home/programs/configs/beets-config.yaml /home/xinoi/.config/beets/config.yaml
+  '';
+
   services.navidrome = {
     enable = true;
     user = "xinoi";

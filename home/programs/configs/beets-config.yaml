@@ -1,7 +1,7 @@
 directory: /mnt/data/music
 library: /mnt/data/beets/musiclibrary.db
 import:
-    move: yes    # Move files to new location
+    move: yes
 match:
     strong_rec_thresh: 0.5
     rec_thresh: 0.85
