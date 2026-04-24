@@ -2,5 +2,5 @@ directory: /mnt/data/music
 library: /mnt/data/beets/musiclibrary.db
 import:
     move: yes    # Move files to new location
-plugins:
-  - musicbrainz
+plugins: musicbrainz spotify fetchart 
+

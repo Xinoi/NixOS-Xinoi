@@ -1,7 +1,6 @@
 services:
   slskd:
     image: slskd/slskd
-    network_mode: host
     environment:
       - SLSKD_REMOTE_CONFIGURATION=true
     volumes:
@@ -9,3 +8,4 @@ services:
       - /mnt/data/slskd/downloads:/app/downloads
     ports:
       - "5030:5030"
+      - "50400:50300"
