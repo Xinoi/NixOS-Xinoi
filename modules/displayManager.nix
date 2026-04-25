@@ -24,7 +24,7 @@
     theme = "where_is_my_sddm_theme";
     extraPackages = [ pkgs.qt6.qt5compat ];
     setupScript = ''
-      ${pkgs.xorg.xrandr}/bin/xrandr \
+      ${pkgs.xrandr}/bin/xrandr \
         --output DP-2 --primary --mode 1920x1080 --rate 143.88 \
         --output HDMI-A-1 --right-of HDMI-1
     '';
