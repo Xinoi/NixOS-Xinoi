@@ -1,6 +1,5 @@
 { ... }: {
  imports = [
   ./wayland
-  ./beets.nix
  ];
 }
