@@ -21,6 +21,7 @@
     efi.canTouchEfiVariables = true;
     systemd-boot = {
       enable = lib.mkForce false;
+      configurationLimit = 5;
     };
   };
   boot.lanzaboote = {
@@ -226,6 +227,14 @@
     xf86_input_wacom
     wootility
     inputs.noctalia.packages.${system}.default
+  ];
+
+  nixpkgs.overlays = [
+    (_: prev: {
+      openldap = prev.openldap.overrideAttrs {
+        doCheck = !prev.stdenv.hostPlatform.isi686;
+      };
+    })
   ];
 
   nixpkgs.config = {
