@@ -2,14 +2,15 @@
 {
   disko.devices = {
     disk = {
-      usb = {
+      main = {
         type   = "disk";
-        device = "/dev/sdc"; # e.g. /dev/sda — your USB stick
+        device = "/dev/nvme0n1"; # e.g. /dev/sda
         content = {
           type = "gpt";
           partitions = {
+
             ESP = {
-              size = "512M";
+              size = "1G";
               type = "EF00";
               content = {
                 type         = "filesystem";
@@ -19,14 +20,22 @@
               };
             };
 
+            swap = {
+              size    = "8G";
+              content = {
+                type = "swap";
+                discardPolicy = "both";
+                resumeDevice  = true;
+              };
+            };
+
             root = {
               size = "100%";
               content = {
                 type         = "filesystem";
                 format       = "ext4";
                 mountpoint   = "/";
-                # noatime + nodiratime: skip access-time writes — critical for flash longevity
-                mountOptions = [ "noatime" "nodiratime" ];
+                mountOptions = [ "noatime" ];
               };
             };
 
