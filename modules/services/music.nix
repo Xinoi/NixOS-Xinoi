@@ -8,8 +8,8 @@
   ];
 
   system.activationScripts.beetsConfig = ''
-    mkdir -p /home/xinoi/.config/beets
-    ln -sf /home/xinoi/NixOS-Xinoi/home/programs/configs/beets-config.yaml /home/xinoi/.config/beets/config.yaml
+    runuser -u xinoi -- mkdir -p /home/xinoi/.config/beets
+    runuser -u xinoi -- ln -sf /home/xinoi/NixOS-Xinoi/home/programs/configs/beets/config.yaml /home/xinoi/.config/beets/config.yaml
   '';
 
   services.navidrome = {
@@ -26,20 +26,24 @@
     description = "Music Downloader";
     after = [
       "network-online.target"
-      "podman.service"
     ];
     requires = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
 
-    path = [ pkgs.podman pkgs.docker-compose ];
+    path = [ pkgs.docker pkgs.docker-compose pkgs.shadow ];
 
     serviceConfig = {
       Type = "simple";
       User = "xinoi";
       WorkingDirectory = "/var/lib/music";
-      ExecStart = "${pkgs.podman}/bin/podman compose -f slskd-server.yml up";
-      ExecStop = "${pkgs.podman}/bin/podman compose -f slskd-server.yml down";
+      ExecStart = "${pkgs.docker}/bin/docker compose -f slskd-server.yml up";
+      ExecStop = "${pkgs.docker}/bin/docker compose -f slskd-server.yml down";
       Restart = "on-failure";
+    };
+    
+    environment = {
+      XDG_RUNTIME_DIR = "/run/user/1000";
+      DOCKER_HOST = "unix:///run/user/1000/docker.sock";
     };
   };
  

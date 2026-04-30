@@ -79,7 +79,8 @@
     description = "Xinoi";
     subUidRanges = [{ startUid = 100000; count = 65536; }];
     subGidRanges = [{ startGid = 100000; count = 65536; }];
-    extraGroups = [ "networkmanager" "wheel" "podman" ];
+    linger = true;  
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 
   fileSystems."/mnt/data" = {
@@ -108,10 +109,10 @@
 
   virtualisation = {
     containers.enable = true;
-    podman = {
+    docker = {
       enable = true;
-      dockerSocket.enable = true;
-      defaultNetwork.settings.dns_enabled = true;
+      rootless.enable = true;
+      rootless.setSocketVariable = true;
     };
   };
 
@@ -139,8 +140,9 @@
   environment.systemPackages = with pkgs; [
     coreutils
     vim
-    podman
-    podman-compose
+    docker
+    docker-compose
+    crun
     curl
     openssl
     bash

@@ -5,13 +5,12 @@
     description = "Seafile 13";
     after = [ 
       "network-online.target"
-      "podman.service"
       "systemd-user-sessions.service"
     ];
-    requires = [ "podman.service" "network-online.target" ];
+    requires = [ "network-online.target" ];
     wantedBy = [ "multi-user.target" ];
 
-    path = [ pkgs.podman pkgs.docker-compose pkgs.shadow ];
+    path = [ pkgs.docker pkgs.docker-compose pkgs.shadow ];
 
     serviceConfig = {
       Type = "simple";
@@ -21,9 +20,14 @@
         "/etc/seafile/seafile-public.env" 
         "/run/secrets/seafile.env"
       ];
-      ExecStart = "${pkgs.podman}/bin/podman compose -f seafile-server.yml up";
-      ExecStop  = "${pkgs.podman}/bin/podman compose -f seafile-server.yml down";
+      ExecStart = "${pkgs.docker}/bin/docker compose -f seafile-server.yml up";
+      ExecStop  = "${pkgs.docker}/bin/docker compose -f seafile-server.yml down";
       Restart   = "always";
+    };
+
+    environment = {
+      XDG_RUNTIME_DIR = "/run/user/1000";
+      DOCKER_HOST = "unix:///run/user/1000/docker.sock";
     };
   };
   
